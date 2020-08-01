@@ -17,7 +17,10 @@ class NightWriter
     p "Created '#{braille.reduce}' containing #{reader.read_first_arg.chomp.length} characters"
   end
 
-
+  def read_and_write
+    new_text = reader.read_first_arg.chomp
+    writer.write(new_text)
+  end
 
 end
 

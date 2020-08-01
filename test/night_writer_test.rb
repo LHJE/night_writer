@@ -61,7 +61,7 @@ class NightWriterTest < Minitest::Test
     new_text = "Just for the test!"
 
     night_writer.writer.write(new_text)
-binding.pry
+
     assert_equal "Just for the test!", night_writer.reader.read_second_arg
   end
 
@@ -70,7 +70,7 @@ binding.pry
     ARGV[0] = "message.txt"
     ARGV[1] = "braille.txt"
 
-    night_writer.read_and_write(first_arg, second_arg)
+    night_writer.read_and_write
 
     assert_equal "hello world", night_writer.reader.read_second_arg
 
