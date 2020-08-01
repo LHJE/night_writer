@@ -147,6 +147,14 @@ class NightWriterTest < Minitest::Test
     assert_equal "...00..0.0..000.0....00.0....00..0.0..\n..00..0.00..0..000..0000.0..00.00.0000\n.0..000.0.....0.0...0.......0...0.0.0.", night_writer.reader.read_second_arg
   end
 
+  def test_write_a_very_long
+    night_writer = NightWriter.new
+    ARGV[0] = "test_input/long_message.txt"
+    ARGV[1] = "test_output/long_braille_for_tests.txt"
 
+    night_writer.read_and_write_english_to_braille
+
+    assert_equal 1526, night_writer.reader.read_second_arg.length
+  end
 
 end
