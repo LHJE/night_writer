@@ -10,5 +10,11 @@ class FileWriterTest < Minitest::Test
     assert_instance_of FileWriter, writer
   end
 
+  def test_it_can_write
+    writer = FileWriter.new
+    ARGV[1] = "braille.txt"
+
+    assert_equal 1, writer.write
+  end
 
 end

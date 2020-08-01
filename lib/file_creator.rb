@@ -1,7 +1,7 @@
 require 'pry'
 
 class FileCreator
-  def write
+  def create
     filename = ARGV[1]
     File.write("data/#{filename}", "w")
   end

@@ -14,7 +14,7 @@ class FileCreatorTest < Minitest::Test
     creator = FileCreator.new
     ARGV[1] = "braille.txt"
 
-    assert_equal 1, creator.write
+    assert_equal 1, creator.create
   end
 
 end
