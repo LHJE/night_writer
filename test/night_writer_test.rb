@@ -56,13 +56,24 @@ class NightWriterTest < Minitest::Test
   def test_it_can_write_with_writer
     night_writer = NightWriter.new
     ARGV[0] = "message.txt"
-    ARGV[1] = "braille.txt"
+    ARGV[1] = "braille_for_tests.txt"
 
-    new_text = "Well hello back!"
+    new_text = "Just for the test!"
 
     night_writer.writer.write(new_text)
 binding.pry
-    assert_equal "Well hello back!", night_writer.reader.read_second_arg
+    assert_equal "Just for the test!", night_writer.reader.read_second_arg
+  end
+
+  def test_read_from_one_write_to_another
+    night_writer = NightWriter.new
+    ARGV[0] = "message.txt"
+    ARGV[1] = "braille.txt"
+
+    night_writer.read_and_write(first_arg, second_arg)
+
+    assert_equal "hello world", night_writer.reader.read_second_arg
+
   end
 
 end
