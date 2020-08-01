@@ -15,7 +15,7 @@ class NightWriterTest < Minitest::Test
     night_writer = NightWriter.new
     ARGV[0] = "message.txt"
     ARGV[1] = "braille.txt"
-  
+
     assert_equal "hello world\n", night_writer.reader.read
     assert_equal "hello world", night_writer.reader.read.chomp
   end
