@@ -1,9 +1,11 @@
-require 'pry'
-
 class FileReader
-  def read
+  def read_first_arg
     filename = ARGV[0]
-    # binding.pry
+    File.read("data/#{filename}")
+  end
+
+  def read_second_arg
+    filename = ARGV[1]
     File.read("data/#{filename}")
   end
 end

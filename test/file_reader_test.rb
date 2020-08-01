@@ -10,11 +10,18 @@ class FileReaderTest < Minitest::Test
     assert_instance_of FileReader, reader
   end
 
-  def test_it_can_read
+  def test_it_can_read_first_arg
     reader = FileReader.new
     ARGV[0] = "message.txt"
 
-    assert_equal "hello world\n", reader.read
+    assert_equal "hello world\n", reader.read_first_arg
+  end
+
+  def test_it_can_read_second_arg
+    reader = FileReader.new
+    ARGV[0] = "braille_for_tests.txt"
+
+    assert_equal "Just for the test!", reader.read_first_arg
   end
 
 
