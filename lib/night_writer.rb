@@ -57,24 +57,34 @@ class NightWriter
     braille_by_row = header.zip(*rows)
     braille_rows_assembled = find_braille_rows_assembled(braille_by_row)
     braille_rows_with_breaks = braille_rows_assembled.map do |braille_row|
-      braille_row.scan(/.{1,40}/).join("\n\n\n")
-    end
-    b_rows_w_breaks_and_returns = braille_rows_with_breaks.each do |braille_row|
-      if braille_row == braille_rows_with_breaks[0]
-        next
-      elsif braille_row == braille_rows_with_breaks[1]
-        braille_row.insert(0, "\r")
-      elsif braille_row == braille_rows_with_breaks[2]
-        braille_row.insert(0, "\r\r")
-      else
-        next
-      end
+      braille_row.scan(/.{1,40}/).join(" ").split(" ")
     end
     binding.pry
+
+
+
+    # make an array of the row, broken up into set of 40 characters.
+    # array [[a1,a2,a3,a4], [b1,b2,b3,b4], [c1,c2,c3,c4]]
+    # arrange them so they are all in a line like a1, b1, c1, a2, b2, c2,... c4
+    #
+    # you don't need the triple break at that point, you'd just need the single break.
+
+
+    # b_rows_w_breaks_and_returns = braille_rows_with_breaks.each do |braille_row|
+    #   if braille_row == braille_rows_with_breaks[0]
+    #     next
+    #   elsif braille_row == braille_rows_with_breaks[1]
+    #     braille_row.insert(0, "\r")
+    #   elsif braille_row == braille_rows_with_breaks[2]
+    #     braille_row.insert(0, "\r\r")
+    #   else
+    #     next
+    #   end
+    # end
     # braille_all_one_line = find_braille_all_one_line(processed_rows)
-    writer.write(b_rows_w_breaks_and_returns[0])
+    # writer.write(b_rows_w_breaks_and_returns[0])
     writer.write(b_rows_w_breaks_and_returns[1])
-    writer.write(b_rows_w_breaks_and_returns[2])
+    # writer.write(b_rows_w_breaks_and_returns[2])
   end
 
 end
