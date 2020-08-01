@@ -37,14 +37,14 @@ class NightReaderTest < Minitest::Test
 
     assert_equal "Created 'test_output_reader/message.txt' containing 11 characters", night_reader.output_statement
   end
-  # #
-  # def test_it_can_print_ending_statement_correctly_with_diff_message
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/braille.txt"
-  #   ARGV[1] = "test_output_reader/backup_message.txt"
   #
-  #   assert_equal "Created 'backup_message.txt' containing 184 characters", night_reader.output_statement
-  # end
+  def test_it_can_print_ending_statement_correctly_with_diff_message
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/braille.txt"
+    ARGV[1] = "test_output_reader/backup_message.txt"
+
+    assert_equal "Created 'test_output_reader/backup_message.txt' containing 11 characters", night_reader.output_statement
+  end
 
   # def test_it_can_print_ending_statement_correctly_with_diff_message
   #   night_reader = NightReader.new
