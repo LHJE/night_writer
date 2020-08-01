@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './data/braille_dictionary.csv'
+require './lib/dictionary.rb'
 
 class DictionaryTest < Minitest::Test
 
