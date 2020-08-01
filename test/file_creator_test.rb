@@ -1,17 +1,17 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/file_writer'
+require './lib/file_creator'
 
-class FileWriterTest < Minitest::Test
+class FileCreatorTest < Minitest::Test
 
   def test_it_exists
-    writer = FileWriter.new
+    writer = FileCreator.new
 
-    assert_instance_of FileWriter, writer
+    assert_instance_of FileCreator, writer
   end
 
   def test_it_can_write
-    writer = FileWriter.new
+    writer = FileCreator.new
     ARGV[1] = "braille.txt"
 
     assert_equal 1, writer.write

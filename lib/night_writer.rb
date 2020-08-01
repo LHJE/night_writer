@@ -3,8 +3,8 @@ require './lib/file_reader'
 
 class NightWriter
 
-  attr_reader :reader
-  
+  attr_reader :reader, :writer
+
   def initialize
     @reader = FileReader.new
   end
