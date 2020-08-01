@@ -73,7 +73,16 @@ class NightWriterTest < Minitest::Test
     night_writer.read_and_write
 
     assert_equal "hello world", night_writer.reader.read_second_arg
+  end
 
+  def test_read_from_one_write_to_another_different
+    night_writer = NightWriter.new
+    ARGV[0] = "message_for_tests.txt"
+    ARGV[1] = "braille_for_tests.txt"
+
+    night_writer.read_and_write
+
+    assert_equal "Just for the test!", night_writer.reader.read_second_arg
   end
 
 end
