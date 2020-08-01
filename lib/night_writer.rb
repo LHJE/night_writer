@@ -4,6 +4,10 @@ require 'pry'
 
 message, *braille = ARGV
 
+
+message_file = File.open("data/#{message}")
+binding.pry
+
 # puts first_arg
 # puts the_rest
 #
@@ -18,29 +22,7 @@ puts "Created '#{braille.reduce}' containing #{braille.reduce.length} characters
 #   puts "Argument: #{a}"
 # end
 #
-# class NightWriter
-#   attr_reader :file_reader
-#
-#   def initialize
-#     @reader = FileReader.new
-#     binding.pry
-#   end
-#
-#   def encode_file_to_braille
-#     # I wouldn't worry about testing this method
-#     # unless you get everything else done
-#     plain = reader.read
-#     braille = encode_to_braille(plain)
-#   end
-#
-#   def encode_to_braille(input)
-#     # you've taken in an INPUT string
-#     # do the magic
-#     # send out an OUTPUT string
-#   end
-# end
-#
-# puts ARGV.inspect
+
 
 # File.open("data/message.txt", "r+") do |file|
 #
@@ -65,3 +47,28 @@ puts "Created '#{braille.reduce}' containing #{braille.reduce.length} characters
 #
 #
 # end
+
+
+# class NightWriter
+#   attr_reader :file_reader
+#
+#   def initialize
+#     @reader = FileReader.new
+#     binding.pry
+#   end
+#
+#   def encode_file_to_braille
+#     # I wouldn't worry about testing this method
+#     # unless you get everything else done
+#     plain = reader.read
+#     braille = encode_to_braille(plain)
+#   end
+#
+#   def encode_to_braille(input)
+#     # you've taken in an INPUT string
+#     # do the magic
+#     # send out an OUTPUT string
+#   end
+# end
+#
+# puts ARGV.inspect
