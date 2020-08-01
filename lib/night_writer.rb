@@ -1,6 +1,6 @@
-require 'pry'
 require './lib/file_reader'
 require './lib/file_writer'
+require 'pry'
 
 class NightWriter
 

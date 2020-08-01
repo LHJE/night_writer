@@ -1,8 +1,8 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/night_writer'
 require './lib/file_reader'
 require './lib/file_writer'
+require './lib/night_writer'
 
 class NightWriterTest < Minitest::Test
 

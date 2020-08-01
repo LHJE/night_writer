@@ -1,4 +1,3 @@
-require 'pry'
 
 class FileWriter
   def write(new_text)
