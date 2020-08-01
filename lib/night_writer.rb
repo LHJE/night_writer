@@ -32,7 +32,7 @@ class NightWriter
         if letter == character
           braille_message << braille.split("\\")
         end
-      end.flatten
+      end
     end
     reassembled_message = []
     broken_up_message = []
@@ -42,7 +42,7 @@ class NightWriter
       end
       reassembled_message << broken_up_message.join("").delete_suffix("\n")
     end
-    # binding.pry
+    binding.pry
 
 
       # broken_up_message = "#{word}\n" }

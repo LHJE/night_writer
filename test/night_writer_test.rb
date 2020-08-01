@@ -87,26 +87,23 @@ class NightWriterTest < Minitest::Test
     assert_equal "Just for the test!", night_writer.reader.read_second_arg
   end
 
-  def test_write_a_braille_a_into_a_new_file
-    night_writer = NightWriter.new
-    ARGV[0] = "message_a_for_tests.txt"
-    ARGV[1] = "braille_a_for_tests.txt"
-
-    night_writer.read_and_write_english_to_braille
-
-    assert_equal "0.\n..\n..", night_writer.reader.read_second_arg
-  end
+  # def test_write_a_braille_a_into_a_new_file
+  #   night_writer = NightWriter.new
+  #   ARGV[0] = "message_a_for_tests.txt"
+  #   ARGV[1] = "braille_a_for_tests.txt"
+  #
+  #   night_writer.read_and_write_english_to_braille
+  #
+  #   assert_equal "0.\n..\n..", night_writer.reader.read_second_arg
+  # end
 
   def test_write_ab_braille_a_into_a_new_file
     night_writer = NightWriter.new
-    ARGV[0] = "message_ab_for_tests.txt"
-    ARGV[1] = "braille_ab_for_tests.txt"
+    ARGV[0] = "message_abc_for_tests.txt"
+    ARGV[1] = "braille_abc_for_tests.txt"
 
     night_writer.read_and_write_english_to_braille
 
-    assert_equal "0.0.\n..0.\n....", night_writer.reader.read_second_arg
+    assert_equal "0.0.00\n..0...\n......", night_writer.reader.read_second_arg
   end
-  0.
-  0.
-  ..
 end
