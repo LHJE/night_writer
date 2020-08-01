@@ -16,6 +16,7 @@ class NightWriterTest < Minitest::Test
     reader = FileReader.new
 
     assert_instance_of FileReader, night_writer.reader
+    assert_instance_of FileReader, night_writer.writer
   end
 
   def test_it_can_read_reader
