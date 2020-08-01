@@ -24,8 +24,7 @@ class NightWriter
     writer.write(new_text)
   end
 
-  def read_and_write_english_to_braille
-    new_text = reader.read_first_arg.chomp.split("")
+  def translate_to_braille(new_text)
     braille_message = []
     new_text.each do |character|
       dictionary.dictionary.each do |letter, braille|
@@ -34,6 +33,12 @@ class NightWriter
         end
       end
     end
+    braille_message
+  end
+
+  def read_and_write_english_to_braille
+    new_text = reader.read_first_arg.chomp.split("")
+    braille_message = translate_to_braille(new_text)
     header, *rows = braille_message
     new_message = header.zip(*rows)
     reassembled_message = []
