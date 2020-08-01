@@ -44,11 +44,11 @@ class NightWriter
     braille_rows_assembled
   end
 
-  # def find_braille_all_one_line(SOME NEW VARIABLE)
-  #   braille_all_one_line = []
-  #   braille_all_one_line << braille_rows_assembled.join("").delete_suffix("\n")
-  #   braille_all_one_line
-  # end
+  def find_braille_all_one_line(transposed_b_message_w_breaks)
+    braille_all_one_line = []
+    braille_all_one_line << transposed_b_message_w_breaks.join("").delete_suffix("\n")
+    braille_all_one_line
+  end
 
   def read_and_write_english_to_braille
     new_text = reader.read_first_arg.chomp.split("")
@@ -59,37 +59,22 @@ class NightWriter
     braille_rows_shortened = braille_rows_assembled.map do |braille_row|
       braille_row.scan(/.{1,40}/).join(" ").split(" ")
     end
-    short_brail_rows_with_breaks = braille_rows_shortened.map do |braille_rows|
+    transposed_b_message_w_breaks = braille_rows_shortened.map do |braille_rows|
       braille_rows.map do |braille_row|
         braille_row.insert(-1, "\n")
       end
-    end
-    binding.pry
+    end.transpose.flatten
     # shortened_braille_rows_assembled
 
 
     # make an array of the row, broken up into set of 40 characters.
     # DONE array [[a1,a2,a3,a4], [b1,b2,b3,b4], [c1,c2,c3,c4]]
-    # arrange them so they are all in a line like a1, b1, c1, a2, b2, c2,... c4
+    # DONE arrange them so they are all in a line like a1, b1, c1, a2, b2, c2,... c4
     #
-    # you don't need the triple break at that point, you'd just need the single break.
 
-
-    # b_rows_w_breaks_and_returns = braille_rows_with_breaks.each do |braille_row|
-    #   if braille_row == braille_rows_with_breaks[0]
-    #     next
-    #   elsif braille_row == braille_rows_with_breaks[1]
-    #     braille_row.insert(0, "\r")
-    #   elsif braille_row == braille_rows_with_breaks[2]
-    #     braille_row.insert(0, "\r\r")
-    #   else
-    #     next
-    #   end
-    # end
-    # braille_all_one_line = find_braille_all_one_line(processed_rows)
-    # writer.write(b_rows_w_breaks_and_returns[0])
-    writer.write(b_rows_w_breaks_and_returns[1])
-    # writer.write(b_rows_w_breaks_and_returns[2])
+    braille_all_one_line = find_braille_all_one_line(transposed_b_message_w_breaks)
+    # binding.pry
+    writer.write(braille_all_one_line.reduce)
   end
 
 end
