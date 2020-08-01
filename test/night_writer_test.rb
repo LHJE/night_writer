@@ -10,4 +10,5 @@ class NightWriterTest < Minitest::Test
 
     assert_instance_of NightWriter, night_writer
   end
+
 end
