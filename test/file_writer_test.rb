@@ -13,8 +13,11 @@ class FileWriterTest < Minitest::Test
   def test_it_can_write
     writer = FileWriter.new
     ARGV[1] = "braille.txt"
+    new_text = "Well hello back!"
 
-    assert_equal 1, writer.write
+    writer.write(new_text)
+
+    assert_equal 16, writer.write(new_text)
   end
 
 end
