@@ -72,7 +72,7 @@ class NightWriterTest < Minitest::Test
     ARGV[0] = "message.txt"
     ARGV[1] = "braille.txt"
 
-    night_writer.read_and_write
+    night_writer.read_and_write_english_to_english
 
     assert_equal "hello world", night_writer.reader.read_second_arg
   end
@@ -82,7 +82,17 @@ class NightWriterTest < Minitest::Test
     ARGV[0] = "message_for_tests.txt"
     ARGV[1] = "braille_for_tests.txt"
 
-    night_writer.read_and_write
+    night_writer.read_and_write_english_to_english
+
+    assert_equal "Just for the test!", night_writer.reader.read_second_arg
+  end
+
+  def test_write_a_braille_a_into_a_new_file
+    night_writer = NightWriter.new
+    ARGV[0] = "message_a_for_tests.txt"
+    ARGV[1] = "braille_a_for_tests.txt"
+
+    night_writer.read_and_write_english_to_braille
 
     assert_equal "Just for the test!", night_writer.reader.read_second_arg
   end
