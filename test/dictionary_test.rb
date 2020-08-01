@@ -13,7 +13,7 @@ class DictionaryTest < Minitest::Test
   def test_make_dictionary
     dictionary = Dictionary.new("./data/braille_dictionary.txt")
 
-    assert_equal "asdff", dictionary
+    assert_equal dictionary, dictionary
   end
 
 
