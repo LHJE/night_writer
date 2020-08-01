@@ -13,7 +13,7 @@ class FileReaderTest < Minitest::Test
   def test_it_can_read
     reader = FileReader.new
     ARGV[0] = "message.txt"
-    
+
     assert_equal "hello world\n", reader.read
   end
 
