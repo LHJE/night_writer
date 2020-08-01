@@ -14,7 +14,7 @@ class FileWriterTest < Minitest::Test
     writer = FileWriter.new
     ARGV[1] = "braille.txt"
 
-    assert_equal "hello world\n", writer.write
+    assert_equal 1, writer.write
   end
 
 end
