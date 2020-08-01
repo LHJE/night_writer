@@ -87,8 +87,17 @@ class NightWriterTest < Minitest::Test
     assert_equal "Just for the test!", night_writer.reader.read_second_arg
   end
 
+  def test_translate_to_braille
+    night_writer = NightWriter.new
+    ARGV[0] = "test_input/message_a_for_tests.txt"
+    ARGV[1] = "test_output/braille_a_for_tests.txt"
+    new_text = night_writer.reader.read_first_arg.chomp.split("")
+
+    assert_equal [["0.", "..", ".."]], night_writer.translate_to_braille(new_text)
+  end
+
   def test_write_a_braille_a_into_a_new_file
-    # skip
+
     night_writer = NightWriter.new
     ARGV[0] = "test_input/message_a_for_tests.txt"
     ARGV[1] = "test_output/braille_a_for_tests.txt"
