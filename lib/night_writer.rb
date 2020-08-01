@@ -36,11 +36,12 @@ class NightWriter
     end
     reassembled_message = []
     broken_up_message = []
-    braille_message.map! do |character|
+    braille_message.each do |character|
       character.each do |line|
         broken_up_message << "#{line}\n"
       end
       reassembled_message << broken_up_message.join("").delete_suffix("\n")
+      broken_up_message = []
     end
     binding.pry
 
