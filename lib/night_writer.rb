@@ -30,6 +30,7 @@ class NightWriter
     dictionary.dictionary.each do |letter, braille|
       new_text.each do |character|
         if letter == character
+          binding.pry
           braille_message << [braille]
         end
       end
