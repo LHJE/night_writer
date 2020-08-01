@@ -96,6 +96,18 @@ class NightWriterTest < Minitest::Test
     assert_equal [["0.", "..", ".."]], night_writer.translate_to_braille(new_text)
   end
 
+  def test_find_braille_rows_assembled
+    night_writer = NightWriter.new
+    ARGV[0] = "test_input/message_a_for_tests.txt"
+    ARGV[1] = "test_output/braille_a_for_tests.txt"
+    new_text = reader.read_first_arg.chomp.split("")
+    braille_message = translate_to_braille(new_text)
+    header, *rows = braille_message
+    braille_by_row = header.zip(*rows)
+
+    assert_equal [["0.", "..", ".."]], night_writer.find_braille_rows_assembled(braille_by_row)
+  end
+
   def test_write_a_braille_a_into_a_new_file
 
     night_writer = NightWriter.new
