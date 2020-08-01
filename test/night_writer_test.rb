@@ -24,7 +24,6 @@ class NightWriterTest < Minitest::Test
     ARGV[0] = "message.txt"
     ARGV[1] = "braille.txt"
 
-
     assert_equal "Created 'braille.txt' containing 11 characters", night_writer.output_statement
   end
 

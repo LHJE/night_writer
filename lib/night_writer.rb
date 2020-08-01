@@ -8,12 +8,15 @@ class NightWriter
   end
 
   def output_statement
+    message, *braille = ARGV
 
+    p "Created '#{braille.reduce}' containing #{braille.reduce.length} characters"
   end
 
 end
 
 
-message, *braille = ARGV
 
-# puts "Created '#{braille.reduce}' containing #{braille.reduce.length} characters"
+
+#
+# night_writer.output_statement
