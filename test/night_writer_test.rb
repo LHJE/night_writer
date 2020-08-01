@@ -121,13 +121,22 @@ class NightWriterTest < Minitest::Test
   def test_write_hello_world
     night_writer = NightWriter.new
     ARGV[0] = "test_input/message.txt"
-    ARGV[1] = "test_output/actual_braille_for_tests.txt"
+    ARGV[1] = "test_output/hello_world_braille_test.txt"
 
     night_writer.read_and_write_english_to_braille
 
     assert_equal "0.0.0.0.0....00.0.0.00\n00.00.0..0..00.0000..0\n....0.0.0....00.0.0...", night_writer.reader.read_second_arg
   end
 
+  def test_write_braille_message_with_capitals
+    night_writer = NightWriter.new
+    ARGV[0] = "test_input/message_for_tests.txt"
+    ARGV[1] = "test_output/capitals_braille_for_tests.txt"
+
+    night_writer.read_and_write_english_to_braille
+
+    assert_equal "...00..0.0..000.0....00.0....00..0.0..\n..00..0.00..0..000..0000.0..00.00.0000\n.0..000.0.....0.0...0.......0...0.0.0.", night_writer.reader.read_second_arg
+  end
 
 
 
