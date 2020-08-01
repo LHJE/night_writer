@@ -6,6 +6,7 @@ message, *braille = ARGV
 
 
 message_file = File.open("data/#{message}")
+message_read = message_file.read.chomp.chars
 binding.pry
 
 # puts first_arg
