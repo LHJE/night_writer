@@ -40,14 +40,14 @@ class NightWriter
     new_text = reader.read_first_arg.chomp.split("")
     braille_message = translate_to_braille(new_text)
     header, *rows = braille_message
-    new_message = header.zip(*rows)
-    reassembled_message = []
-    broken_up_message = []
-    new_message.each do |character|
-      broken_up_message << "#{character.join("")}\n"
+    braille_by_row = header.zip(*rows)
+    braille_all_one_line = []
+    braille_rows_assembled = []
+    braille_by_row.each do |character|
+      braille_rows_assembled << "#{character.join("")}\n"
     end
-    reassembled_message << broken_up_message.join("").delete_suffix("\n")
-    writer.write(reassembled_message.reduce)
+    braille_all_one_line << braille_rows_assembled.join("").delete_suffix("\n")
+    writer.write(braille_all_one_line.reduce)
   end
 
 end
