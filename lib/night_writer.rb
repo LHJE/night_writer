@@ -14,7 +14,7 @@ class NightWriter
   def output_statement
     message, *braille = ARGV
 
-    p "Created '#{braille.reduce}' containing #{reader.read.chomp.length} characters"
+    p "Created '#{braille.reduce}' containing #{reader.read_first_arg.chomp.length} characters"
   end
 
 
