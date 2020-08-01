@@ -1,4 +1,3 @@
-
 class FileReader
   def read_first_arg
     filename = ARGV[0]

@@ -1,4 +1,3 @@
-require 'pry'
 class Dictionary
 
   attr_reader :dictionary

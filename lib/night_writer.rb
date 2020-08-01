@@ -25,12 +25,18 @@ class NightWriter
   end
 
   def read_and_write_english_to_braille
-    new_text = reader.read_first_arg.chomp
-    binding.pry
-    dictionary.dictionary
-    new_text.chomp
+    new_text = reader.read_first_arg.chomp.split("")
+    braille_message = []
+    dictionary.dictionary.each do |letter, braille|
+      new_text.each do |character|
+        if letter == character
+          braille_message << [braille]
+        end
+      end
+    end
 
-    writer.write(braille_text)
+
+    writer.write(braille_message.flatten.reduce)
 
   end
 

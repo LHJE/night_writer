@@ -1,4 +1,3 @@
-
 class FileWriter
   def write(new_text)
     filename = ARGV[1]
