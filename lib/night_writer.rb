@@ -7,6 +7,10 @@ class NightWriter
     @reader = FileReader.new
   end
 
+  def output_statement
+
+  end
+
 end
 
 
