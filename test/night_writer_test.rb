@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/night_writer'
 require './lib/file_reader'
+require './lib/file_writer'
 
 class NightWriterTest < Minitest::Test
 
@@ -14,9 +15,10 @@ class NightWriterTest < Minitest::Test
   def test_it_has_attributes
     night_writer = NightWriter.new
     reader = FileReader.new
+    writer = FileWriter.new
 
     assert_instance_of FileReader, night_writer.reader
-    assert_instance_of FileReader, night_writer.writer
+    assert_instance_of FileWriter, night_writer.writer
   end
 
   def test_it_can_read_reader

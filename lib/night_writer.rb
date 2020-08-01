@@ -1,5 +1,6 @@
 require 'pry'
 require './lib/file_reader'
+require './lib/file_writer'
 
 class NightWriter
 
@@ -7,6 +8,7 @@ class NightWriter
 
   def initialize
     @reader = FileReader.new
+    @writer = FileWriter.new
   end
 
   def output_statement
