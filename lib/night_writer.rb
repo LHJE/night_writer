@@ -43,7 +43,7 @@ class NightWriter
       reassembled_message << broken_up_message.join("").delete_suffix("\n")
       broken_up_message = []
     end
-    binding.pry
+    # binding.pry
 
 
       # broken_up_message = "#{word}\n" }
