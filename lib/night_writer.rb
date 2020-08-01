@@ -50,10 +50,7 @@ class NightWriter
     header, *rows = braille_message
     braille_by_row = header.zip(*rows)
     braille_all_one_line = []
-    braille_rows_assembled = []
-    braille_by_row.each do |character|
-      braille_rows_assembled << "#{character.join("")}\n"
-    end
+    braille_rows_assembled = find_braille_rows_assembled(braille_by_row)
     braille_all_one_line << braille_rows_assembled.join("").delete_suffix("\n")
     writer.write(braille_all_one_line.reduce)
   end
