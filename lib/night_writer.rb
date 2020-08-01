@@ -12,4 +12,4 @@ end
 
 message, *braille = ARGV
 
-puts "Created '#{braille.reduce}' containing #{braille.reduce.length} characters"
+# puts "Created '#{braille.reduce}' containing #{braille.reduce.length} characters"
