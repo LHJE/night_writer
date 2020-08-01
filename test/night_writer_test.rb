@@ -98,23 +98,34 @@ class NightWriterTest < Minitest::Test
     assert_equal "0.\n..\n..", night_writer.reader.read_second_arg
   end
 
-  def test_write_ab_braille_a_into_a_new_file
+  # def test_write_ab_braille_a_into_a_new_file
+  #   night_writer = NightWriter.new
+  #   ARGV[0] = "test_input/message_abc_for_tests.txt"
+  #   ARGV[1] = "test_output/braille_abc_for_tests.txt"
+  #
+  #   night_writer.read_and_write_english_to_braille
+  #
+  #   assert_equal "0.0.00\n..0...\n......", night_writer.reader.read_second_arg
+  # end
+
+  def test_write_print_spaces
     night_writer = NightWriter.new
-    ARGV[0] = "test_input/message_abc_for_tests.txt"
-    ARGV[1] = "test_output/braille_abc_for_tests.txt"
+    ARGV[0] = "test_input/spaces.txt"
+    ARGV[1] = "test_output/actual_braille_for_tests.txt"
 
     night_writer.read_and_write_english_to_braille
 
-    assert_equal "0.0.00\n..0...\n......", night_writer.reader.read_second_arg
+    assert_equal "......\n......\n......", night_writer.reader.read_second_arg
   end
 
-  # def test_write_just_for_the_test
+  # def test_write_hello_world
   #   night_writer = NightWriter.new
-  #   ARGV[0] = "test_input/message_for_tests.txt"
+  #   ARGV[0] = "test_input/message.txt"
   #   ARGV[1] = "test_output/actual_braille_for_tests.txt"
   #
   #   night_writer.read_and_write_english_to_braille
   #
+  #   assert_equal "0.0.00\n..0...\n......", night_writer.reader.read_second_arg
   # end
 
 

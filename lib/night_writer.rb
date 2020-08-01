@@ -27,13 +27,14 @@ class NightWriter
   def read_and_write_english_to_braille
     new_text = reader.read_first_arg.chomp.split("")
     braille_message = []
-    dictionary.dictionary.each do |letter, braille|
-      new_text.each do |character|
+    new_text.each do |character|
+      dictionary.dictionary.each do |letter, braille|
         if letter == character
-          braille_message << braille.split("\\")
+          braille_message << braille.split(" ")
         end
       end
     end
+    # binding.pry
     new_message = braille_message[0].zip(braille_message[1].zip(braille_message[2]))
     reassembled_message = []
     broken_up_message = []
@@ -41,7 +42,6 @@ class NightWriter
       broken_up_message << "#{character.join("")}\n"
     end
     reassembled_message << broken_up_message.join("").delete_suffix("\n")
-    # binding.pry
 
     # new_message.each do |character|
     #   binding.pry
