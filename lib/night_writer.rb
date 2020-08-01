@@ -1,14 +1,16 @@
 require './lib/file_reader'
 require './lib/file_writer'
+require './lib/dictionary'
 require 'pry'
 
 class NightWriter
 
-  attr_reader :reader, :writer
+  attr_reader :reader, :writer, :dictionary
 
   def initialize
     @reader = FileReader.new
     @writer = FileWriter.new
+    @dictionary = Dictionary.new("./data/braille_dictionary.txt")
   end
 
   def output_statement

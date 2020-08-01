@@ -3,6 +3,7 @@ require 'minitest/pride'
 require './lib/file_reader'
 require './lib/file_writer'
 require './lib/night_writer'
+require './lib/dictionary'
 
 class NightWriterTest < Minitest::Test
 
@@ -48,7 +49,7 @@ class NightWriterTest < Minitest::Test
 
   def test_it_can_print_ending_statement_correctly_with_diff_message
     night_writer = NightWriter.new
-    ARGV[0] = "backup_message.txt"
+    ARGV[0] = "long_message.txt"
     ARGV[1] = "braille.txt"
 
     assert_equal "Created 'braille.txt' containing 184 characters", night_writer.output_statement
