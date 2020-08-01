@@ -10,4 +10,5 @@ class FileReaderTest < Minitest::Test
     assert_instance_of FileReader, reader
   end
 
+
 end
