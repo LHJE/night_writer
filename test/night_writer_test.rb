@@ -94,6 +94,16 @@ class NightWriterTest < Minitest::Test
 
     night_writer.read_and_write_english_to_braille
 
+    assert_equal "0.\n..\n..", night_writer.reader.read_second_arg
+  end
+
+  def test_write_ab_braille_a_into_a_new_file
+    night_writer = NightWriter.new
+    ARGV[0] = "message_ab_for_tests.txt"
+    ARGV[1] = "braille_ab_for_tests.txt"
+
+    night_writer.read_and_write_english_to_braille
+
     assert_equal "0.\n..\n..\n", night_writer.reader.read_second_arg
   end
 

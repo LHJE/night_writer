@@ -36,7 +36,7 @@ class NightWriter
     end
     broken_up_message = braille_message.flatten.map! { |word| "#{word}\n" }
     reassembled_message = broken_up_message.join("")
-    writer.write(reassembled_message)
+    writer.write(reassembled_message.delete_suffix("\n"))
   end
 
 end
