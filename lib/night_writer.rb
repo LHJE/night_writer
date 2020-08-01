@@ -13,6 +13,8 @@ class NightWriter
     p "Created '#{braille.reduce}' containing #{reader.read.chomp.length} characters"
   end
 
+
+
 end
 
 #this below isn't gonna work I don't think
