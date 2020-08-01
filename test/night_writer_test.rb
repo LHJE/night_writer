@@ -11,6 +11,13 @@ class NightWriterTest < Minitest::Test
     assert_instance_of NightWriter, night_writer
   end
 
+  def test_it_has_attributes
+    night_writer = NightWriter.new
+    reader = FileReader.new
+
+    assert_instance_of FileReader, night_writer.reader
+  end
+
   def test_it_can_read_reader
     night_writer = NightWriter.new
     ARGV[0] = "message.txt"
