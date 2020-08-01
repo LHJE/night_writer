@@ -56,8 +56,25 @@ class NightWriter
     header, *rows = braille_message
     braille_by_row = header.zip(*rows)
     braille_rows_assembled = find_braille_rows_assembled(braille_by_row)
-    braille_all_one_line = find_braille_all_one_line(braille_rows_assembled)
-    writer.write(braille_all_one_line.reduce)
+    braille_rows_with_breaks = braille_rows_assembled.map do |braille_row|
+      braille_row.scan(/.{1,40}/).join("\n\n\n")
+    end
+    b_rows_w_breaks_and_returns = braille_rows_with_breaks.each do |braille_row|
+      if braille_row == braille_rows_with_breaks[0]
+        next
+      elsif braille_row == braille_rows_with_breaks[1]
+        braille_row.insert(0, "\r")
+      elsif braille_row == braille_rows_with_breaks[2]
+        braille_row.insert(0, "\r\r")
+      else
+        next
+      end
+    end
+    binding.pry
+    # braille_all_one_line = find_braille_all_one_line(processed_rows)
+    writer.write(b_rows_w_breaks_and_returns[0])
+    writer.write(b_rows_w_breaks_and_returns[1])
+    writer.write(b_rows_w_breaks_and_returns[2])
   end
 
 end
