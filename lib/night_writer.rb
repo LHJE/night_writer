@@ -1,3 +1,4 @@
+require './lib/file_reader'
 require 'pry'
 
 
