@@ -5,16 +5,16 @@ require './lib/file_creator'
 class FileCreatorTest < Minitest::Test
 
   def test_it_exists
-    writer = FileCreator.new
+    creator = FileCreator.new
 
-    assert_instance_of FileCreator, writer
+    assert_instance_of FileCreator, creator
   end
 
   def test_it_can_write
-    writer = FileCreator.new
+    creator = FileCreator.new
     ARGV[1] = "braille.txt"
 
-    assert_equal 1, writer.write
+    assert_equal 1, creator.write
   end
 
 end
