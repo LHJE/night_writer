@@ -57,16 +57,16 @@ class NightReaderTest < Minitest::Test
 
     assert_equal "Just for the test!", night_reader.reader.read_second_arg
   end
-  #
-  # def test_read_from_one_write_to_another
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/braille.txt"
-  #   ARGV[1] = "test_output_reader/message.txt"
-  #
-  #   night_reader.read_and_write_english_to_english
-  #
-  #   assert_equal "hello world", night_reader.reader.read_second_arg
-  # end
+
+  def test_read_from_one_write_to_another
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/braille.txt"
+    ARGV[1] = "test_output_reader/message.txt"
+
+    night_reader.read_and_write_english_to_english
+
+    assert_equal "hello world", night_reader.reader.read_second_arg
+  end
   #
   # def test_read_from_one_write_to_another_different
   #   night_reader = NightReader.new
