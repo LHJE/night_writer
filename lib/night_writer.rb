@@ -39,16 +39,16 @@ class NightWriter
   def find_braille_rows_assembled(braille_by_row)
     braille_rows_assembled = []
     braille_by_row.each do |character|
-      braille_rows_assembled << "#{character.join("")}\n"
+      braille_rows_assembled << "#{character.join("")}"
     end
     braille_rows_assembled
   end
 
-  def find_braille_all_one_line(braille_rows_assembled)
-    braille_all_one_line = []
-    braille_all_one_line << braille_rows_assembled.join("").delete_suffix("\n")
-    braille_all_one_line
-  end
+  # def find_braille_all_one_line(SOME NEW VARIABLE)
+  #   braille_all_one_line = []
+  #   braille_all_one_line << braille_rows_assembled.join("").delete_suffix("\n")
+  #   braille_all_one_line
+  # end
 
   def read_and_write_english_to_braille
     new_text = reader.read_first_arg.chomp.split("")
@@ -56,15 +56,20 @@ class NightWriter
     header, *rows = braille_message
     braille_by_row = header.zip(*rows)
     braille_rows_assembled = find_braille_rows_assembled(braille_by_row)
-    braille_rows_with_breaks = braille_rows_assembled.map do |braille_row|
+    braille_rows_shortened = braille_rows_assembled.map do |braille_row|
       braille_row.scan(/.{1,40}/).join(" ").split(" ")
     end
+    short_brail_rows_with_breaks = braille_rows_shortened.map do |braille_rows|
+      braille_rows.map do |braille_row|
+        braille_row.insert(-1, "\n")
+      end
+    end
     binding.pry
-
+    # shortened_braille_rows_assembled
 
 
     # make an array of the row, broken up into set of 40 characters.
-    # array [[a1,a2,a3,a4], [b1,b2,b3,b4], [c1,c2,c3,c4]]
+    # DONE array [[a1,a2,a3,a4], [b1,b2,b3,b4], [c1,c2,c3,c4]]
     # arrange them so they are all in a line like a1, b1, c1, a2, b2, c2,... c4
     #
     # you don't need the triple break at that point, you'd just need the single break.
