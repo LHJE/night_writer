@@ -68,7 +68,7 @@ class NightWriter
     writer.write(braille_all_one_line.reduce)
   end
 
-end
+end 
 
 #this below isn't gonna work I don't think
 # ARGV[0] = "message.txt"
