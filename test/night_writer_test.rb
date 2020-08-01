@@ -53,4 +53,14 @@ class NightWriterTest < Minitest::Test
     assert_equal "Created 'braille.txt' containing 184 characters", night_writer.output_statement
   end
 
+  def test_it_can_write_with_reader
+    night_writer = NightWriter.new
+    ARGV[0] = "message.txt"
+    ARGV[1] = "braille.txt"
+
+    "Well hello back!"
+
+    assert_equal "Well hello back!", night_writer.reader.read
+  end
+
 end
