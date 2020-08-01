@@ -179,7 +179,7 @@ class NightWriterTest < Minitest::Test
 
     night_writer.read_and_write_english_to_braille
 
-    assert_equal 1562, night_writer.reader.read_second_arg.length
+    assert_equal 1544, night_writer.reader.read_second_arg.length
   end
 
 end
