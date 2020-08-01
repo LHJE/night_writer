@@ -34,28 +34,14 @@ class NightWriter
         end
       end
     end
-    # binding.pry
-    new_message = braille_message[0].zip(braille_message[1].zip(braille_message[2]))
+    header, *rows = braille_message
+    new_message = header.zip(*rows)
     reassembled_message = []
     broken_up_message = []
     new_message.each do |character|
       broken_up_message << "#{character.join("")}\n"
     end
     reassembled_message << broken_up_message.join("").delete_suffix("\n")
-
-    # new_message.each do |character|
-    #   binding.pry
-    #   character.each do |line|
-    #     broken_up_message << "#{line}\n"
-    #   end
-    #   reassembled_message << broken_up_message.join("").delete_suffix("\n")
-    #   broken_up_message = []
-    # end
-
-
-      # broken_up_message = "#{word}\n" }
-
-    # broken_up_message = braille_message.flatten.map! { |word| "#{word}\n" }
     writer.write(reassembled_message.reduce)
   end
 
