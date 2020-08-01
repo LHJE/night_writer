@@ -30,15 +30,13 @@ class NightWriter
     dictionary.dictionary.each do |letter, braille|
       new_text.each do |character|
         if letter == character
-          binding.pry
-          braille_message << [braille]
+          braille_message << braille.split("\\")
         end
-      end
+      end.flatten
     end
-
-
-    writer.write(braille_message.flatten.reduce)
-
+    broken_up_message = braille_message.flatten.map! { |word| "#{word}\n" }
+    reassembled_message = broken_up_message.join("")
+    writer.write(reassembled_message)
   end
 
 end
