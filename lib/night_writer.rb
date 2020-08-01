@@ -36,6 +36,14 @@ class NightWriter
     braille_message
   end
 
+  def find_braille_rows_assembled(braille_by_row)
+    braille_rows_assembled = []
+    braille_by_row.each do |character|
+      braille_rows_assembled << "#{character.join("")}\n"
+    end
+    braille_rows_assembled
+  end
+
   def read_and_write_english_to_braille
     new_text = reader.read_first_arg.chomp.split("")
     braille_message = translate_to_braille(new_text)
