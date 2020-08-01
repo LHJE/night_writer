@@ -24,6 +24,16 @@ class NightWriter
     writer.write(new_text)
   end
 
+  def read_and_write_english_to_braille
+    new_text = reader.read_first_arg.chomp
+    binding.pry
+    dictionary.dictionary
+    new_text.chomp
+
+    writer.write(braille_text)
+
+  end
+
 end
 
 #this below isn't gonna work I don't think

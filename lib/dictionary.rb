@@ -1,8 +1,9 @@
 require 'pry'
 class Dictionary
 
+  attr_reader :dictionary
   def initialize(filepath)
-    Hash[File.read(filepath.chomp).scan(/(.+?), (.+)/)]
+    @dictionary = Hash[File.read(filepath.chomp).scan(/(.+?), (.+)/)]
   end
 
 end

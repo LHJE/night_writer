@@ -10,6 +10,12 @@ class DictionaryTest < Minitest::Test
     assert_instance_of Dictionary, dictionary
   end
 
+  def test_it_has_attributes
+    dictionary = Dictionary.new("./data/braille_dictionary.txt")
+
+    assert_instance_of Hash, dictionary.dictionary
+  end
+
   def test_make_dictionary
     dictionary = Dictionary.new("./data/braille_dictionary.txt")
 
