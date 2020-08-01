@@ -11,5 +11,4 @@ class FileWriterTest < Minitest::Test
   end
 
 
-
 end
