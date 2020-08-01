@@ -30,15 +30,6 @@ class NightWriterTest < Minitest::Test
     assert_equal "hello world", night_writer.reader.read_first_arg.chomp
   end
 
-  def test_it_can_print_ending_statement_correctly_with_diff_message
-    night_writer = NightWriter.new
-    ARGV[0] = "test_input_writer/backup_message.txt"
-    ARGV[1] = "test_output_writer/braille.txt"
-
-    assert_equal "Created 'braille.txt' containing 184 characters", night_writer.output_statement
-  end
-
-
   def test_it_can_print_ending_statement_correctly
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/message.txt"
@@ -50,9 +41,9 @@ class NightWriterTest < Minitest::Test
   def test_it_can_print_ending_statement_correctly_with_diff_message
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/long_message.txt"
-    ARGV[1] = "test_output_writer/braille.txt"
+    ARGV[1] = "test_output_writer/braille_long.txt"
 
-    assert_equal "Created 'test_output_writer/braille.txt' containing 184 characters", night_writer.output_statement
+    assert_equal "Created 'test_output_writer/braille_long.txt' containing 184 characters", night_writer.output_statement
   end
 
   def test_it_can_write_with_writer

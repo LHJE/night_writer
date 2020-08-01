@@ -46,25 +46,17 @@ class NightReaderTest < Minitest::Test
     assert_equal "Created 'test_output_reader/backup_message.txt' containing 11 characters", night_reader.output_statement
   end
 
-  # def test_it_can_print_ending_statement_correctly_with_diff_message
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/braille.txt"
-  #   ARGV[1] = "test_output_reader/long_message.txt"
-  #
-  #   assert_equal "Created 'test_input_reader/braille.txt' containing 184 characters", night_reader.output_statement
-  # end
-  #
-  # def test_it_can_write_with_writer
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/braille_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/message.txt"
-  #
-  #   new_text = "Just for the test!"
-  #
-  #   night_reader.writer.write(new_text)
-  #
-  #   assert_equal "Just for the test!", night_reader.reader.read_second_arg
-  # end
+  def test_it_can_write_with_writer
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/braille_for_tests.txt"
+    ARGV[1] = "test_output_reader/message.txt"
+
+    new_text = "Just for the test!"
+
+    night_reader.writer.write(new_text)
+
+    assert_equal "Just for the test!", night_reader.reader.read_second_arg
+  end
   #
   # def test_read_from_one_write_to_another
   #   night_reader = NightReader.new
