@@ -85,7 +85,6 @@ class NightReader
     english_message = translate_to_english(untransposed_b_message_w_breaks)
     writer.write(english_message)
   end
-
 end
 
 #turn the below on to use program.  Test won't work if they're on, however.
