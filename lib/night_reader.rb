@@ -35,7 +35,7 @@ class NightReader
       if new_text[0].length > 2
         # binding.pry
         if braille == [new_text[0][0..3], new_text[1][0..3], new_text[2][0..3]].join(" ")
-          # binding.pry
+          binding.pry
           english_message << letter
           new_text[0] = new_text[0].slice(4..-1)
           new_text[1] = new_text[1].slice(4..-1)
