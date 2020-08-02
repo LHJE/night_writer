@@ -78,6 +78,20 @@ class NightReaderTest < Minitest::Test
     assert_equal "Just for the test!", night_reader.translate_to_english(untransposed_b_message_w_breaks)
   end
 
+  def test_read_and_write_braille_to_english
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/capitals_braille_for_tests.txt"
+    ARGV[1] = "test_output_reader/new_message4.txt"
+    new_text = night_reader.reader.read_first_arg.chomp
+    new_text = night_reader.reader.read_first_arg.chomp
+    braille_multiple_lines = night_reader.find_braille_multiple_lines(new_text)
+    untransposed_b_message_w_breaks = night_reader.find_untransposed_b_message(braille_multiple_lines)
+    english_message = night_reader.translate_to_english(untransposed_b_message_w_breaks)
+    night_reader.writer.write(english_message)
+
+    assert_equal "Just for the test!", night_reader.reader.read_second_arg
+  end
+
   def test_write_a_braille_a_into_a_new_file
     night_reader = NightReader.new
     ARGV[0] = "test_input_reader/braille_a_for_tests.txt"
