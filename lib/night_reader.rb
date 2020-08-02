@@ -39,7 +39,6 @@ class NightReader
             new_text[0] = new_text[0].slice(2..-1)
             new_text[1] = new_text[1].slice(2..-1)
             new_text[2] = new_text[2].slice(2..-1)
-            binding.pry
           elsif braille == [new_text[0][0..3], new_text[1][0..3], new_text[2][0..3]].join(" ")
             english_message << letter
             new_text[0] = new_text[0].slice(4..-1)
@@ -60,6 +59,9 @@ class NightReader
           new_text[2] = new_text[2].slice(2..-1)
         elsif braille.split(" ").join("\n") == new_text.join("\n")
           english_message << letter
+          new_text[0] = new_text[0].slice(2..-1)
+          new_text[1] = new_text[1].slice(2..-1)
+          new_text[2] = new_text[2].slice(2..-1)
         else
           next
         end
