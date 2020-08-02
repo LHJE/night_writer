@@ -51,6 +51,15 @@ class NightWriter
     braille_rows_shortened
   end
 
+  def find_transposed_b_message_w_breaks(braille_rows_shortened)
+    transposed_b_message_w_breaks = braille_rows_shortened.map do |braille_rows|
+      braille_rows.map do |braille_row|
+        braille_row.insert(-1, "\n")
+      end
+    end.transpose.flatten
+    transposed_b_message_w_breaks
+  end
+
   def find_braille_all_one_line(transposed_b_message_w_breaks)
     braille_all_one_line = []
     braille_all_one_line << transposed_b_message_w_breaks.join("").delete_suffix("\n")

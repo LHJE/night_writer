@@ -126,9 +126,6 @@ class NightWriterTest < Minitest::Test
     assert_equal ["0.\n", "..\n", "..\n"], night_writer.find_transposed_b_message_w_breaks(braille_rows_shortened)
   end
 
-
-
-
   def test_find_braille_all_one_line
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/message_a_for_tests.txt"
