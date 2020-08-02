@@ -24,6 +24,11 @@ class NightReader
     writer.write(new_text)
   end
 
+  def read_and_write_braille_to_braille
+    new_text = reader.read_first_arg.chomp
+    writer.write(new_text)
+  end
+
   def translate_to_braille(new_text)
     braille_message = []
     new_text.each do |character|
