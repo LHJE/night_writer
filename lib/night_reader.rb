@@ -29,14 +29,32 @@ class NightReader
     writer.write(new_text)
   end
 
-  def translate_to_english(new_text)
+  def translate_to_english(untransposed_b_message_w_breaks)
     english_message = []
+    new_text = untransposed_b_message_w_breaks
     dictionary.dictionary.each do |letter, braille|
-      if braille.split(" ").join("\n") == new_text.join("\n")
+
+      if new_text[0].length > 2
+        binding.pry
+        if braille == [new_text[0][0..3], new_text[1][0..3], new_text[2][0..3]].join(" ")
+          english_message << letter
+          new_text[0] = new_text[0].slice(4..-1)
+          new_text[1] = new_text[1].slice(4..-1)
+          new_text[2] = new_text[2].slice(4..-1)
+        elsif braille == [new_text[0][0..1], new_text[1][0..1], new_text[2][0..1]].join(" ")
+          english_message << letter
+          new_text[0] = new_text[0].slice(2..-1)
+          new_text[1] = new_text[1].slice(2..-1)
+          new_text[2] = new_text[2].slice(2..-1)
+        else
+          next
+        end
+      elsif braille.split(" ").join("\n") == new_text.join("\n")
         english_message << letter
+      else
+        next
       end
     end
-    binding.pry
     english_message.reduce
   end
   #
@@ -95,7 +113,7 @@ class NightReader
 
 
     # binding.pry
-    
+
     # CHECK FOR CAPITALS FIRST.
 
     #this cannot be the next step

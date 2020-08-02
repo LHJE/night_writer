@@ -89,7 +89,7 @@ class NightReaderTest < Minitest::Test
   end
 
   def test_translate_to_english
-    skip #not working now...
+    skip #not working now that we're doing more than one character
     night_reader = NightReader.new
     ARGV[0] = "test_input_reader/braille_a_for_tests.txt"
     ARGV[1] = "test_output_reader/message_a_for_tests.txt"
@@ -151,6 +151,7 @@ class NightReaderTest < Minitest::Test
   # end
   #
   def test_write_a_braille_a_into_a_new_file
+    skip #this works, but skipping to work on "abc"
     night_reader = NightReader.new
     ARGV[0] = "test_input_reader/braille_a_for_tests.txt"
     ARGV[1] = "test_output_reader/message_a_for_tests.txt"
@@ -160,15 +161,15 @@ class NightReaderTest < Minitest::Test
     assert_equal "a", night_reader.reader.read_second_arg
   end
   #
-  # def test_write_ab_braille_a_into_a_new_file
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/braille_abc_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/message_abc_for_tests.txt"
-  #
-  #   night_reader.read_and_write_braille_to_english
-  #
-  #   assert_equal "0.0.00\n..0...\n......", night_reader.reader.read_second_arg
-  # end
+  def test_write_abc_braille_a_into_a_new_file
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/braille_abc_for_tests.txt"
+    ARGV[1] = "test_output_reader/message_abc_for_tests.txt"
+
+    night_reader.read_and_write_braille_to_english
+
+    assert_equal "0.0.00\n..0...\n......", night_reader.reader.read_second_arg
+  end
   #
   # def test_write_print_spaces
   #   night_reader = NightReader.new
