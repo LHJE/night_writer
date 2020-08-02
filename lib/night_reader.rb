@@ -29,19 +29,19 @@ class NightReader
     writer.write(new_text)
   end
 
-  def translate_to_english(untransposed_b_message_w_breaks)
+  def translate_to_english(new_text)
     english_message = []
-    new_text = untransposed_b_message_w_breaks
     dictionary.dictionary.each do |letter, braille|
-
       if new_text[0].length > 2
-        binding.pry
+        # binding.pry
         if braille == [new_text[0][0..3], new_text[1][0..3], new_text[2][0..3]].join(" ")
+          # binding.pry
           english_message << letter
           new_text[0] = new_text[0].slice(4..-1)
           new_text[1] = new_text[1].slice(4..-1)
           new_text[2] = new_text[2].slice(4..-1)
         elsif braille == [new_text[0][0..1], new_text[1][0..1], new_text[2][0..1]].join(" ")
+          # binding.pry
           english_message << letter
           new_text[0] = new_text[0].slice(2..-1)
           new_text[1] = new_text[1].slice(2..-1)
@@ -55,7 +55,7 @@ class NightReader
         next
       end
     end
-    english_message.reduce
+    english_message.join("")
   end
   #
   # def translate_to_english(new_text)
