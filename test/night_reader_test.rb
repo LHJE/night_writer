@@ -98,57 +98,7 @@ class NightReaderTest < Minitest::Test
     assert_equal "a", night_reader.translate_to_english(new_text)
   end
   #
-  # def test_find_braille_rows_assembled
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/braille_a_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/message_a_for_tests.txt"
-  #   new_text = night_reader.reader.read_first_arg.chomp.split("")
-  #   braille_message = night_reader.translate_to_braille(new_text)
-  #   header, *rows = braille_message
-  #   braille_by_row = header.zip(*rows)
-  #
-  #   assert_equal ["0.", "..", ".."], night_reader.find_braille_rows_assembled(braille_by_row)
-  # end
-  #
-  # def test_find_braille_rows_shortened
-  #   night_reader = NightWriter.new
-  #   ARGV[0] = "test_input_reader/braille_a_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/message_a_for_tests.txt"
-  #   new_text = night_reader.reader.read_first_arg.chomp.split("")
-  #   braille_message = night_reader.translate_to_braille(new_text)
-  #   header, *rows = braille_message
-  #   braille_by_row = header.zip(*rows)
-  #   braille_rows_assembled = night_reader.find_braille_rows_assembled(braille_by_row)
-  #
-  #   assert_equal [["0."], [".."], [".."]], night_reader.find_braille_rows_shortened(braille_rows_assembled)
-  # end
-  #
-  # def test_find_transposed_b_message_w_breaks
-  #   night_reader = NightWriter.new
-  #   ARGV[0] = "test_input_reader/braille_a_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/message_a_for_tests.txt"
-  #   new_text = night_reader.reader.read_first_arg.chomp.split("")
-  #   braille_message = night_reader.translate_to_braille(new_text)
-  #   header, *rows = braille_message
-  #   braille_by_row = header.zip(*rows)
-  #   braille_rows_assembled = night_reader.find_braille_rows_assembled(braille_by_row)
-  #   braille_rows_shortened = night_reader.find_braille_rows_shortened(braille_rows_assembled)
-  #
-  #   assert_equal ["0.\n", "..\n", "..\n"], night_reader.find_transposed_b_message_w_breaks(braille_rows_shortened)
-  # end
 
-  # def test_find_braille_all_one_line
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/braille_a_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/message_a_for_tests.txt"
-  #   new_text = night_reader.reader.read_first_arg.chomp.split("")
-  #   braille_message = night_reader.translate_to_braille(new_text)
-  #   header, *rows = braille_message
-  #   braille_by_row = header.zip(*rows)
-  #   braille_rows_assembled = night_reader.find_braille_rows_assembled(braille_by_row)
-  #
-  #   assert_equal ["0....."], night_reader.find_braille_all_one_line(braille_rows_assembled)
-  # end
   #
   def test_write_a_braille_a_into_a_new_file
     # skip #this works, but skipping to work on "abc"

@@ -16,7 +16,7 @@ class NightWriter
   def output_statement
     message, *braille = ARGV
 
-    p "Created '#{braille.reduce}' containing #{reader.read_first_arg.chomp.length} characters"
+    p "Created '#{braille.reduce}' containing #{reader.read_second_arg.chomp.length} characters"
   end
 
   def read_and_write_english_to_english
@@ -89,4 +89,5 @@ end
 # ARGV[0] = "message.txt"
 # ARGV[1] = "braille.txt"
 night_writer = NightWriter.new
-# night_writer.output_statement
+night_writer.read_and_write_english_to_braille
+night_writer.output_statement

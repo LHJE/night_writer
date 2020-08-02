@@ -16,7 +16,7 @@ class NightReader
   def output_statement
     braille, *message = ARGV
 
-    p "Created '#{message.reduce}' containing #{reader.read_first_arg.chomp.length} characters"
+    p "Created '#{message.reduce}' containing #{reader.read_second_arg.chomp.length} characters"
   end
 
   def read_and_write_english_to_english
@@ -69,33 +69,6 @@ class NightReader
     end
     english_message.join("")
   end
-  #
-  # def translate_to_english(new_text)
-  #   english_message = []
-  #   binding.pry
-  #   new_text.each do |character|
-  #     dictionary.dictionary.each do |letter, braille|
-  #       if braille == character
-  #         english_message << letter.split(" ")
-  #       end
-  #     end
-  #   end
-  #   english_message
-  # end
-
-  def find_braille_by_row(braille_message)
-    header, *rows = braille_message
-    braille_by_row = header.zip(*rows)
-    braille_by_row
-  end
-
-  def find_braille_rows_disassembled(untransposed_b_message_w_breaks)
-    braille_rows_disassembled = []
-    untransposed_b_message_w_breaks.each do |character|
-      braille_rows_disassembled << "#{character.join("")}"
-    end
-    braille_rows_disassembled
-  end
 
   def find_untransposed_b_message(braille_multiple_lines)
     untransposed_b_message = []
@@ -122,17 +95,6 @@ class NightReader
     new_text = reader.read_first_arg.chomp
     braille_multiple_lines = find_braille_multiple_lines(new_text)
     untransposed_b_message_w_breaks = find_untransposed_b_message(braille_multiple_lines)
-
-
-    # binding.pry
-
-    # CHECK FOR CAPITALS FIRST.
-
-    #this cannot be the next step
-    # braille_rows_disassembled = find_braille_rows_disassembled(untransposed_b_message_w_breaks)
-    # #English_by_row?
-    # braille_by_row = find_braille_by_row(braille_rows_disassembled)
-
     english_message = translate_to_english(untransposed_b_message_w_breaks)
     writer.write(english_message)
   end
@@ -140,7 +102,6 @@ class NightReader
 end
 
 #this below isn't gonna work I don't think
-# ARGV[0] = "message.txt"
-# ARGV[1] = "braille.txt"
-night_writer = NightReader.new
-# night_writer.output_statement
+# binding.pry
+night_reader = NightReader.new
+night_reader.output_statement
