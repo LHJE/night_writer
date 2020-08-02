@@ -216,15 +216,15 @@ class NightReaderTest < Minitest::Test
     assert_equal "hello world", night_reader.reader.read_second_arg
   end
   #
-  # def test_write_braille_message_with_capitals
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/capitals_braille_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/message_for_tests.txt"
-  #
-  #   night_reader.read_and_write_braille_to_english
-  #
-  #   assert_equal "...00..0.0..000.0....00.0....00..0.0..\n..00..0.00..0..000..0000.0..00.00.0000\n.0..000.0.....0.0...0.......0...0.0.0.", night_reader.reader.read_second_arg
-  # end
+  def test_write_braille_message_with_capitals
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/capitals_braille_for_tests.txt"
+    ARGV[1] = "test_output_reader/message_for_tests.txt"
+
+    night_reader.read_and_write_braille_to_english
+
+    assert_equal "Just for the test!", night_reader.reader.read_second_arg
+  end
   #
   def test_write_a_very_long
     night_reader = NightReader.new
