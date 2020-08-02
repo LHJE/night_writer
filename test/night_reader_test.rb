@@ -99,108 +99,119 @@ class NightReaderTest < Minitest::Test
 
     assert_equal ["C"], night_reader.english_message_if_long_braille_string(braille_array, letter, braille)
   end
-  #
-  # def test_read_and_write_braille_to_english
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/capitals_braille_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/new_message4.txt"
-  #   new_text = night_reader.reader.read_first_arg.chomp
-  #   new_text = night_reader.reader.read_first_arg.chomp
-  #   braille_multiple_lines = night_reader.find_braille_multiple_lines(new_text)
-  #   untransposed_b_message_w_breaks = night_reader.find_untransposed_b_message(braille_multiple_lines)
-  #   english_message = night_reader.translate_to_english(untransposed_b_message_w_breaks)
-  #   night_reader.writer.write(english_message)
-  #
-  #   assert_equal "Just for the test!", night_reader.reader.read_second_arg
-  # end
-  #
-  # def test_write_a_braille_a_into_a_new_file
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/braille_a_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/message_a_for_tests.txt"
-  #   night_reader.read_and_write_braille_to_english
-  #
-  #   assert_equal "a", night_reader.reader.read_second_arg
-  # end
-  #
-  # def test_write_abc_english_into_a_new_file
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/braille_abc_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/message_abc_for_tests.txt"
-  #   night_reader.read_and_write_braille_to_english
-  #
-  #   assert_equal "abc", night_reader.reader.read_second_arg
-  # end
-  #
-  # def test_write_abc_english_into_a_new_file
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/braille_capital_abc_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/message_capital_abc_for_tests.txt"
-  #   night_reader.read_and_write_braille_to_english
-  #
-  #   assert_equal "ABC", night_reader.reader.read_second_arg
-  # end
-  #
-  # def test_write_abc_english_into_a_new_file
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/braille_capital_cba_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/message_capital_cba_for_tests.txt"
-  #   night_reader.read_and_write_braille_to_english
-  #
-  #   assert_equal "CBA", night_reader.reader.read_second_arg
-  # end
-  #
-  # def test_write_spaces
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/actual_braille_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/spaces.txt"
-  #   night_reader.read_and_write_braille_to_english
-  #
-  #   assert_equal "   ", night_reader.reader.read_second_arg
-  # end
-  #
-  # def test_write_hello_world
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/hello_world_braille_test.txt"
-  #   ARGV[1] = "test_output_reader/message.txt"
-  #   night_reader.read_and_write_braille_to_english
-  #
-  #   assert_equal "hello world", night_reader.reader.read_second_arg
-  # end
-  #
-  # def test_write_braille_message_with_capital_and_symbol
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/capitals_braille_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/message_for_tests.txt"
-  #   night_reader.read_and_write_braille_to_english
-  #
-  #   assert_equal "Just for the test!", night_reader.reader.read_second_arg
-  # end
-  #
-  # def test_write_a_very_long_message
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/long_braille_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/long_message.txt"
-  #   night_reader.read_and_write_braille_to_english
-  #
-  #   assert_equal 184, night_reader.reader.read_second_arg.length
-  # end
-  #
-  # def test_write_all_characters
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/all_characters_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/all_characters.txt"
-  #   night_reader.read_and_write_braille_to_english
-  #
-  #   assert_equal  " !',-.?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", night_reader.reader.read_second_arg
-  # end
-  #
-  # def test_write_all_characters_and_numbers
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/all_characters_and_numbers_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/all_characters_and_numbers.txt"
-  #   night_reader.read_and_write_braille_to_english
-  #
-  #   assert_equal  " !',-.?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890", night_reader.reader.read_second_arg
-  # end
+
+  def test_find_english_message
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/capitals_braille_for_tests.txt"
+    ARGV[1] = "test_output_reader/new_message3.txt"
+    braille = "...0 ..00 .00."
+    letter = "T"
+    braille_array = ["...00.0.", "..00....", ".00....."]
+
+    assert_equal [["T"]], night_reader.find_english_message(braille_array, letter, braille)
+  end
+
+  def test_read_and_write_braille_to_english
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/capitals_braille_for_tests.txt"
+    ARGV[1] = "test_output_reader/new_message4.txt"
+    new_text = night_reader.reader.read_first_arg.chomp
+    new_text = night_reader.reader.read_first_arg.chomp
+    braille_multiple_lines = night_reader.find_braille_multiple_lines(new_text)
+    untransposed_b_message_w_breaks = night_reader.find_untransposed_b_message(braille_multiple_lines)
+    english_message = night_reader.translate_to_english(untransposed_b_message_w_breaks)
+    night_reader.writer.write(english_message)
+
+    assert_equal "Just for the test!", night_reader.reader.read_second_arg
+  end
+
+  def test_write_a_braille_a_into_a_new_file
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/braille_a_for_tests.txt"
+    ARGV[1] = "test_output_reader/message_a_for_tests.txt"
+    night_reader.read_and_write_braille_to_english
+
+    assert_equal "a", night_reader.reader.read_second_arg
+  end
+
+  def test_write_abc_english_into_a_new_file
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/braille_abc_for_tests.txt"
+    ARGV[1] = "test_output_reader/message_abc_for_tests.txt"
+    night_reader.read_and_write_braille_to_english
+
+    assert_equal "abc", night_reader.reader.read_second_arg
+  end
+
+  def test_write_abc_english_into_a_new_file
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/braille_capital_abc_for_tests.txt"
+    ARGV[1] = "test_output_reader/message_capital_abc_for_tests.txt"
+    night_reader.read_and_write_braille_to_english
+
+    assert_equal "ABC", night_reader.reader.read_second_arg
+  end
+
+  def test_write_abc_english_into_a_new_file
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/braille_capital_cba_for_tests.txt"
+    ARGV[1] = "test_output_reader/message_capital_cba_for_tests.txt"
+    night_reader.read_and_write_braille_to_english
+
+    assert_equal "CBA", night_reader.reader.read_second_arg
+  end
+
+  def test_write_spaces
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/actual_braille_for_tests.txt"
+    ARGV[1] = "test_output_reader/spaces.txt"
+    night_reader.read_and_write_braille_to_english
+
+    assert_equal "   ", night_reader.reader.read_second_arg
+  end
+
+  def test_write_hello_world
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/hello_world_braille_test.txt"
+    ARGV[1] = "test_output_reader/message.txt"
+    night_reader.read_and_write_braille_to_english
+
+    assert_equal "hello world", night_reader.reader.read_second_arg
+  end
+
+  def test_write_braille_message_with_capital_and_symbol
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/capitals_braille_for_tests.txt"
+    ARGV[1] = "test_output_reader/message_for_tests.txt"
+    night_reader.read_and_write_braille_to_english
+
+    assert_equal "Just for the test!", night_reader.reader.read_second_arg
+  end
+
+  def test_write_a_very_long_message
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/long_braille_for_tests.txt"
+    ARGV[1] = "test_output_reader/long_message.txt"
+    night_reader.read_and_write_braille_to_english
+
+    assert_equal 184, night_reader.reader.read_second_arg.length
+  end
+
+  def test_write_all_characters
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/all_characters_for_tests.txt"
+    ARGV[1] = "test_output_reader/all_characters.txt"
+    night_reader.read_and_write_braille_to_english
+
+    assert_equal  " !',-.?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", night_reader.reader.read_second_arg
+  end
+
+  def test_write_all_characters_and_numbers
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/all_characters_and_numbers_for_tests.txt"
+    ARGV[1] = "test_output_reader/all_characters_and_numbers.txt"
+    night_reader.read_and_write_braille_to_english
+
+    assert_equal  " !',-.?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890", night_reader.reader.read_second_arg
+  end
 end
