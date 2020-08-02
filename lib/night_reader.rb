@@ -101,7 +101,6 @@ class NightReader
 
 end
 
-#this below isn't gonna work I don't think
-# binding.pry
 night_reader = NightReader.new
+night_reader.read_and_write_braille_to_english
 night_reader.output_statement
