@@ -73,11 +73,7 @@ class NightWriter
     braille_by_row = header.zip(*rows)
     braille_rows_assembled = find_braille_rows_assembled(braille_by_row)
     braille_rows_shortened = find_braille_rows_shortened(braille_rows_assembled)
-    transposed_b_message_w_breaks = braille_rows_shortened.map do |braille_rows|
-      braille_rows.map do |braille_row|
-        braille_row.insert(-1, "\n")
-      end
-    end.transpose.flatten
+    transposed_b_message_w_breaks = find_transposed_b_message_w_breaks(braille_rows_shortened)
     braille_all_one_line = find_braille_all_one_line(transposed_b_message_w_breaks)
     writer.write(braille_all_one_line.reduce)
   end
