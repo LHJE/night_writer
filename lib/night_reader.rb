@@ -32,11 +32,11 @@ class NightReader
   def translate_to_english(new_text)
     english_message = []
     dictionary.dictionary.each do |letter, braille|
-      if braille.split(" ").join("\n") == new_text
-        # binding.pry
+      if braille.split(" ").join("\n") == new_text.join("\n")
         english_message << letter
       end
     end
+    binding.pry
     english_message.reduce
   end
   #
@@ -94,15 +94,16 @@ class NightReader
     untransposed_b_message_w_breaks = find_untransposed_b_message(braille_multiple_lines)
 
 
-    binding.pry
+    # binding.pry
+    
     # CHECK FOR CAPITALS FIRST.
 
     #this cannot be the next step
-    braille_rows_disassembled = find_braille_rows_disassembled(untransposed_b_message_w_breaks)
-    #English_by_row?
-    braille_by_row = find_braille_by_row(braille_rows_disassembled)
+    # braille_rows_disassembled = find_braille_rows_disassembled(untransposed_b_message_w_breaks)
+    # #English_by_row?
+    # braille_by_row = find_braille_by_row(braille_rows_disassembled)
 
-    english_message = translate_to_english(braille_by_row)
+    english_message = translate_to_english(untransposed_b_message_w_breaks)
     writer.write(english_message)
   end
 
