@@ -113,7 +113,6 @@ class NightWriterTest < Minitest::Test
   end
 
   def test_write_a_braille_a_into_a_new_file
-
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/message_a_for_tests.txt"
     ARGV[1] = "test_output_writer/braille_a_for_tests.txt"

@@ -50,22 +50,22 @@ class NightReader
     braille_all_one_line
   end
 
-  def read_and_write_english_to_braille
-    new_text = reader.read_first_arg.chomp.split("")
-    braille_message = translate_to_braille(new_text)
-    header, *rows = braille_message
-    braille_by_row = header.zip(*rows)
-    braille_rows_assembled = find_braille_rows_assembled(braille_by_row)
-    braille_rows_shortened = braille_rows_assembled.map do |braille_row|
-      braille_row.scan(/.{1,80}/).join(" ").split(" ")
-    end
-    transposed_b_message_w_breaks = braille_rows_shortened.map do |braille_rows|
-      braille_rows.map do |braille_row|
-        braille_row.insert(-1, "\n")
-      end
-    end.transpose.flatten
-    braille_all_one_line = find_braille_all_one_line(transposed_b_message_w_breaks)
-    writer.write(braille_all_one_line.reduce)
+  def read_and_write_braille_to_english
+    # new_text = reader.read_first_arg.chomp.split("")
+    # braille_message = translate_to_braille(new_text)
+    # header, *rows = braille_message
+    # braille_by_row = header.zip(*rows)
+    # braille_rows_assembled = find_braille_rows_assembled(braille_by_row)
+    # braille_rows_shortened = braille_rows_assembled.map do |braille_row|
+    #   braille_row.scan(/.{1,80}/).join(" ").split(" ")
+    # end
+    # transposed_b_message_w_breaks = braille_rows_shortened.map do |braille_rows|
+    #   braille_rows.map do |braille_row|
+    #     braille_row.insert(-1, "\n")
+    #   end
+    # end.transpose.flatten
+    # braille_all_one_line = find_braille_all_one_line(transposed_b_message_w_breaks)
+    # writer.write(braille_all_one_line.reduce)
   end
 
 end
