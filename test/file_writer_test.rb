@@ -19,5 +19,4 @@ class FileWriterTest < Minitest::Test
 
     assert_equal 16, writer.write(new_text)
   end
-
 end

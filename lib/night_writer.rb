@@ -85,9 +85,7 @@ class NightWriter
 
 end
 
-#this below isn't gonna work I don't think
-# ARGV[0] = "message.txt"
-# ARGV[1] = "braille.txt"
-night_writer = NightWriter.new
-night_writer.read_and_write_english_to_braille
-night_writer.output_statement
+#turn the below on to use program.  Test won't work if they're on, however.
+# night_writer = NightWriter.new
+# night_writer.read_and_write_english_to_braille
+# night_writer.output_statement

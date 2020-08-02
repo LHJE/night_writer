@@ -50,9 +50,7 @@ class NightWriterTest < Minitest::Test
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/message.txt"
     ARGV[1] = "test_output_writer/braille_for_tests.txt"
-
     new_text = "Just for the test!"
-
     night_writer.writer.write(new_text)
 
     assert_equal "Just for the test!", night_writer.reader.read_second_arg
@@ -62,7 +60,6 @@ class NightWriterTest < Minitest::Test
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/message.txt"
     ARGV[1] = "test_output_writer/braille.txt"
-
     night_writer.read_and_write_english_to_english
 
     assert_equal "hello world", night_writer.reader.read_second_arg
@@ -72,7 +69,6 @@ class NightWriterTest < Minitest::Test
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/message_for_tests.txt"
     ARGV[1] = "test_output_writer/braille_for_tests.txt"
-
     night_writer.read_and_write_english_to_english
 
     assert_equal "Just for the test!", night_writer.reader.read_second_arg
@@ -153,7 +149,6 @@ class NightWriterTest < Minitest::Test
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/message_a_for_tests.txt"
     ARGV[1] = "test_output_writer/braille_a_for_tests.txt"
-
     night_writer.read_and_write_english_to_braille
 
     assert_equal "0.\n..\n..", night_writer.reader.read_second_arg
@@ -163,7 +158,6 @@ class NightWriterTest < Minitest::Test
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/message_abc_for_tests.txt"
     ARGV[1] = "test_output_writer/braille_abc_for_tests.txt"
-
     night_writer.read_and_write_english_to_braille
 
     assert_equal "0.0.00\n..0...\n......", night_writer.reader.read_second_arg
@@ -173,7 +167,6 @@ class NightWriterTest < Minitest::Test
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/spaces.txt"
     ARGV[1] = "test_output_writer/actual_braille_for_tests.txt"
-
     night_writer.read_and_write_english_to_braille
 
     assert_equal "......\n......\n......", night_writer.reader.read_second_arg
@@ -183,7 +176,6 @@ class NightWriterTest < Minitest::Test
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/message.txt"
     ARGV[1] = "test_output_writer/hello_world_braille_test.txt"
-
     night_writer.read_and_write_english_to_braille
 
     assert_equal "0.0.0.0.0....00.0.0.00\n00.00.0..0..00.0000..0\n....0.0.0....00.0.0...", night_writer.reader.read_second_arg
@@ -193,7 +185,6 @@ class NightWriterTest < Minitest::Test
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/message_for_tests.txt"
     ARGV[1] = "test_output_writer/capitals_braille_for_tests.txt"
-
     night_writer.read_and_write_english_to_braille
 
     assert_equal "...00..0.0..000.0....00.0....00..0.0..\n..00..0.00..0..000..0000.0..00.00.0000\n.0..000.0.....0.0...0.......0...0.0.0.", night_writer.reader.read_second_arg
@@ -203,7 +194,6 @@ class NightWriterTest < Minitest::Test
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/long_message.txt"
     ARGV[1] = "test_output_writer/long_braille_for_tests.txt"
-
     night_writer.read_and_write_english_to_braille
 
     assert_equal 1544, night_writer.reader.read_second_arg.length
@@ -213,7 +203,6 @@ class NightWriterTest < Minitest::Test
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/all_characters.txt"
     ARGV[1] = "test_output_writer/all_characters_for_tests.txt"
-
     night_writer.read_and_write_english_to_braille
 
     assert_equal 518, night_writer.reader.read_second_arg.length
@@ -223,7 +212,6 @@ class NightWriterTest < Minitest::Test
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/all_characters_and_numbers.txt"
     ARGV[1] = "test_output_writer/all_characters_and_numbers_for_tests.txt"
-
     night_writer.read_and_write_english_to_braille
 
     assert_equal 638, night_writer.reader.read_second_arg.length
@@ -233,8 +221,6 @@ class NightWriterTest < Minitest::Test
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/message_capital_abc_for_tests.txt"
     ARGV[1] = "test_output_writer/braille_capital_abc_for_tests.txt"
-
-
     night_writer.read_and_write_english_to_braille
 
     assert_equal 38, night_writer.reader.read_second_arg.length
@@ -244,8 +230,6 @@ class NightWriterTest < Minitest::Test
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/message_capital_abc_for_tests.txt"
     ARGV[1] = "test_output_writer/braille_capital_abc_for_tests.txt"
-
-
     night_writer.read_and_write_english_to_braille
 
     assert_equal 38, night_writer.reader.read_second_arg.length
@@ -256,10 +240,8 @@ class NightWriterTest < Minitest::Test
     ARGV[0] = "test_input_writer/message_capital_cba_for_tests.txt"
     ARGV[1] = "test_output_writer/braille_capital_cba_for_tests.txt"
 
-
     night_writer.read_and_write_english_to_braille
 
     assert_equal 38, night_writer.reader.read_second_arg.length
   end
-
 end

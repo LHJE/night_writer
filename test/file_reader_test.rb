@@ -23,6 +23,4 @@ class FileReaderTest < Minitest::Test
 
     assert_equal "hello world\n", reader.read_first_arg
   end
-
-
 end

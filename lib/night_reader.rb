@@ -101,6 +101,7 @@ class NightReader
 
 end
 
-night_reader = NightReader.new
-night_reader.read_and_write_braille_to_english
-night_reader.output_statement
+#turn the below on to use program.  Test won't work if they're on, however.
+# night_reader = NightReader.new
+# night_reader.read_and_write_braille_to_english
+# night_reader.output_statement
