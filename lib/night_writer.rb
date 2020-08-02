@@ -44,6 +44,15 @@ class NightWriter
     braille_rows_assembled
   end
 
+  def find_braille_rows_shortened(braille_rows_assembled)
+    braille_rows_shortened = braille_rows_assembled.map do |braille_row|
+      braille_row.scan(/.{1,80}/).join(" ").split(" ")
+    end
+    braille_rows_shortened
+  end
+
+
+
   def find_braille_all_one_line(transposed_b_message_w_breaks)
     braille_all_one_line = []
     braille_all_one_line << transposed_b_message_w_breaks.join("").delete_suffix("\n")
@@ -56,9 +65,7 @@ class NightWriter
     header, *rows = braille_message
     braille_by_row = header.zip(*rows)
     braille_rows_assembled = find_braille_rows_assembled(braille_by_row)
-    braille_rows_shortened = braille_rows_assembled.map do |braille_row|
-      braille_row.scan(/.{1,80}/).join(" ").split(" ")
-    end
+    braille_rows_shortened = find_braille_rows_shortened(braille_rows_assembled)
     transposed_b_message_w_breaks = braille_rows_shortened.map do |braille_rows|
       braille_rows.map do |braille_row|
         braille_row.insert(-1, "\n")
@@ -68,7 +75,7 @@ class NightWriter
     writer.write(braille_all_one_line.reduce)
   end
 
-end 
+end
 
 #this below isn't gonna work I don't think
 # ARGV[0] = "message.txt"

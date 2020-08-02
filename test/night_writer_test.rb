@@ -109,7 +109,7 @@ class NightWriterTest < Minitest::Test
     braille_by_row = header.zip(*rows)
     braille_rows_assembled = night_writer.find_braille_rows_assembled(braille_by_row)
 
-    assert_equal ["0.", "..", ".."], night_writer.find_braille_rows_shortened(braille_rows_assembled)
+    assert_equal [["0."], [".."], [".."]], night_writer.find_braille_rows_shortened(braille_rows_assembled)
   end
 
 
