@@ -206,7 +206,7 @@ class NightReaderTest < Minitest::Test
   end
 
   def test_write_hello_world
-    skip
+    # skip
     night_reader = NightReader.new
     ARGV[0] = "test_input_reader/hello_world_braille_test.txt"
     ARGV[1] = "test_output_reader/message.txt"
