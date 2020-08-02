@@ -21,6 +21,4 @@ class DictionaryTest < Minitest::Test
 
     assert_equal dictionary, dictionary
   end
-
-
 end
