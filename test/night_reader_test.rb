@@ -85,7 +85,7 @@ class NightReaderTest < Minitest::Test
 
     night_reader.read_and_write_braille_to_braille
 
-    assert_equal "Just for the test!", night_reader.reader.read_second_arg
+    assert_equal "0.\n..\n..", night_reader.reader.read_second_arg
   end
 
 
