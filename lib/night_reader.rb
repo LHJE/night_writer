@@ -46,21 +46,24 @@ class NightReader
     braille_array
   end
 
+  def english_message_if_long_braille_string(braille_array, letter, braille)
+    english_message = []
+    if [braille_array[0][0..1], braille_array[1][0..1], braille_array[2][0..1]].join(" ")  == ".. .. .."
+      english_message << " " ; slice_two_from_each_string(braille_array)
+    elsif braille == [braille_array[0][0..3], braille_array[1][0..3], braille_array[2][0..3]].join(" ")
+      english_message << letter ; 2.times { slice_two_from_each_string(braille_array) }
+    elsif braille == [braille_array[0][0..1], braille_array[1][0..1], braille_array[2][0..1]].join(" ")
+      english_message << letter ; slice_two_from_each_string(braille_array)
+    end
+    english_message
+  end
+
   def translate_to_english(braille_array)
     english_message = []
     until braille_array == ["", "", ""]
       dictionary.dictionary.each do |letter, braille|
         if braille_array[0].length > 2
-          if [braille_array[0][0..1], braille_array[1][0..1], braille_array[2][0..1]].join(" ")  == ".. .. .."
-            english_message << " "
-            slice_two_from_each_string(braille_array)
-          elsif braille == [braille_array[0][0..3], braille_array[1][0..3], braille_array[2][0..3]].join(" ")
-            english_message << letter
-            2.times { slice_two_from_each_string(braille_array) }
-          elsif braille == [braille_array[0][0..1], braille_array[1][0..1], braille_array[2][0..1]].join(" ")
-            english_message << letter
-            slice_two_from_each_string(braille_array)
-          end
+          english_message << english_message_if_long_braille_string(braille_array, letter, braille)
         elsif [braille_array[0][0..1], braille_array[1][0..1], braille_array[2][0..1]].join(" ")  == ".. .. .."
           english_message << " "
           slice_two_from_each_string(braille_array)
