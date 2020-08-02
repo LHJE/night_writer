@@ -219,4 +219,14 @@ class NightWriterTest < Minitest::Test
     assert_equal 518, night_writer.reader.read_second_arg.length
   end
 
+  def test_write_all_characters_and_numbers
+    night_writer = NightWriter.new
+    ARGV[0] = "test_input_writer/all_characters_and_numbers.txt"
+    ARGV[1] = "test_output_writer/all_characters_and_numbers_for_tests.txt"
+
+    night_writer.read_and_write_english_to_braille
+
+    assert_equal 638, night_writer.reader.read_second_arg.length
+  end
+
 end
