@@ -33,9 +33,9 @@ class NightWriterTest < Minitest::Test
   def test_it_can_print_ending_statement_correctly
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/message.txt"
-    ARGV[1] = "test_output_writer/braille.txt"
+    ARGV[1] = "test_output_writer/braille1.txt"
 
-    assert_equal "Created 'test_output_writer/braille.txt' containing 11 characters", night_writer.output_statement
+    assert_equal "Created 'test_output_writer/braille1.txt' containing 16 characters", night_writer.output_statement
   end
 
   def test_it_can_write_with_writer
@@ -146,7 +146,7 @@ class NightWriterTest < Minitest::Test
     assert_equal "0.\n..\n..", night_writer.reader.read_second_arg
   end
 
-  def test_write_ab_braille_a_into_a_new_file
+  def test_write_abc_braille_a_into_a_new_file
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/message_abc_for_tests.txt"
     ARGV[1] = "test_output_writer/braille_abc_for_tests.txt"

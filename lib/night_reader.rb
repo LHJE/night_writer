@@ -28,50 +28,50 @@ class NightReader
     untransposed_b_message = []
     extra_lines = []
     braille_multiple_lines.transpose.each do |braille_line|
-        index_number = 3
-        while braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + index_number] != nil
-          extra_lines << braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + index_number]
-          index_number += 3
-        end
-        untransposed_b_message << (braille_line.reduce + extra_lines.join(""))
-        extra_lines = []
+      index_number = 3
+      while braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + index_number] != nil
+        extra_lines << braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + index_number]
+        index_number += 3
+      end
+      untransposed_b_message << (braille_line.reduce + extra_lines.join(""))
+      extra_lines = []
     end
     untransposed_b_message[0..2]
   end
 
-  def translate_to_english(new_text)
+  def translate_to_english(braille_array)
     english_message = []
-    until new_text == ["", "", ""]
+    until braille_array == ["", "", ""]
       dictionary.dictionary.each do |letter, braille|
-        if new_text[0].length > 2
-          if [new_text[0][0..1], new_text[1][0..1], new_text[2][0..1]].join(" ")  == ".. .. .."
+        if braille_array[0].length > 2
+          if [braille_array[0][0..1], braille_array[1][0..1], braille_array[2][0..1]].join(" ")  == ".. .. .."
             english_message << " "
-            new_text[0] = new_text[0].slice(2..-1)
-            new_text[1] = new_text[1].slice(2..-1)
-            new_text[2] = new_text[2].slice(2..-1)
-          elsif braille == [new_text[0][0..3], new_text[1][0..3], new_text[2][0..3]].join(" ")
+            braille_array[0] = braille_array[0].slice(2..-1)
+            braille_array[1] = braille_array[1].slice(2..-1)
+            braille_array[2] = braille_array[2].slice(2..-1)
+          elsif braille == [braille_array[0][0..3], braille_array[1][0..3], braille_array[2][0..3]].join(" ")
             english_message << letter
-            new_text[0] = new_text[0].slice(4..-1)
-            new_text[1] = new_text[1].slice(4..-1)
-            new_text[2] = new_text[2].slice(4..-1)
-          elsif braille == [new_text[0][0..1], new_text[1][0..1], new_text[2][0..1]].join(" ")
+            braille_array[0] = braille_array[0].slice(4..-1)
+            braille_array[1] = braille_array[1].slice(4..-1)
+            braille_array[2] = braille_array[2].slice(4..-1)
+          elsif braille == [braille_array[0][0..1], braille_array[1][0..1], braille_array[2][0..1]].join(" ")
             english_message << letter
-            new_text[0] = new_text[0].slice(2..-1)
-            new_text[1] = new_text[1].slice(2..-1)
-            new_text[2] = new_text[2].slice(2..-1)
+            braille_array[0] = braille_array[0].slice(2..-1)
+            braille_array[1] = braille_array[1].slice(2..-1)
+            braille_array[2] = braille_array[2].slice(2..-1)
           else
             next
           end
-        elsif [new_text[0][0..1], new_text[1][0..1], new_text[2][0..1]].join(" ")  == ".. .. .."
+        elsif [braille_array[0][0..1], braille_array[1][0..1], braille_array[2][0..1]].join(" ")  == ".. .. .."
           english_message << " "
-          new_text[0] = new_text[0].slice(2..-1)
-          new_text[1] = new_text[1].slice(2..-1)
-          new_text[2] = new_text[2].slice(2..-1)
-        elsif braille.split(" ").join("\n") == new_text.join("\n")
+          braille_array[0] = braille_array[0].slice(2..-1)
+          braille_array[1] = braille_array[1].slice(2..-1)
+          braille_array[2] = braille_array[2].slice(2..-1)
+        elsif braille.split(" ").join("\n") == braille_array.join("\n")
           english_message << letter
-          new_text[0] = new_text[0].slice(2..-1)
-          new_text[1] = new_text[1].slice(2..-1)
-          new_text[2] = new_text[2].slice(2..-1)
+          braille_array[0] = braille_array[0].slice(2..-1)
+          braille_array[1] = braille_array[1].slice(2..-1)
+          braille_array[2] = braille_array[2].slice(2..-1)
         else
           next
         end
