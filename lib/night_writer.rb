@@ -36,6 +36,12 @@ class NightWriter
     braille_message
   end
 
+  def find_braille_by_row(braille_message)
+    header, *rows = braille_message
+    braille_by_row = header.zip(*rows)
+    braille_by_row
+  end
+
   def find_braille_rows_assembled(braille_by_row)
     braille_rows_assembled = []
     braille_by_row.each do |character|
@@ -69,8 +75,7 @@ class NightWriter
   def read_and_write_english_to_braille
     new_text = reader.read_first_arg.chomp.split("")
     braille_message = translate_to_braille(new_text)
-    header, *rows = braille_message
-    braille_by_row = header.zip(*rows)
+    braille_by_row = find_braille_by_row(braille_message)
     braille_rows_assembled = find_braille_rows_assembled(braille_by_row)
     braille_rows_shortened = find_braille_rows_shortened(braille_rows_assembled)
     transposed_b_message_w_breaks = find_transposed_b_message_w_breaks(braille_rows_shortened)
