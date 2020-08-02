@@ -33,10 +33,13 @@ class NightReader
     english_message = []
     until new_text == ["", "", ""]
       dictionary.dictionary.each do |letter, braille|
-        # binding.pry
         if new_text[0].length > 2
-          # binding.pry
-          if braille == [new_text[0][0..3], new_text[1][0..3], new_text[2][0..3]].join(" ")
+          if [new_text[0][0..1], new_text[1][0..1], new_text[2][0..1]].join(" ")  == ".. .. .."
+            english_message << " "
+            new_text[0] = new_text[0].slice(2..-1)
+            new_text[1] = new_text[1].slice(2..-1)
+            new_text[2] = new_text[2].slice(2..-1)
+          elsif braille == [new_text[0][0..3], new_text[1][0..3], new_text[2][0..3]].join(" ")
             # binding.pry
             english_message << letter
             new_text[0] = new_text[0].slice(4..-1)
@@ -51,6 +54,11 @@ class NightReader
           else
             next
           end
+        elsif [new_text[0][0..1], new_text[1][0..1], new_text[2][0..1]].join(" ")  == ".. .. .."
+          english_message << " "
+          new_text[0] = new_text[0].slice(2..-1)
+          new_text[1] = new_text[1].slice(2..-1)
+          new_text[2] = new_text[2].slice(2..-1)
         elsif braille.split(" ").join("\n") == new_text.join("\n")
           english_message << letter
         else

@@ -184,7 +184,7 @@ class NightReaderTest < Minitest::Test
   end
 
   def test_write_abc_english_into_a_new_file
-    # skip #this works, but skipping to work on "hello world"
+    skip #this works, but skipping to work on "hello world"
     night_reader = NightReader.new
     ARGV[0] = "test_input_reader/braille_capital_cba_for_tests.txt"
     ARGV[1] = "test_output_reader/message_capital_cba_for_tests.txt"
@@ -195,7 +195,7 @@ class NightReaderTest < Minitest::Test
   end
 
   def test_write_print_spaces
-    skip #maybe let's get this one outta here...
+    skip ##this works, but skipping to work on others
     night_reader = NightReader.new
     ARGV[0] = "test_input_reader/actual_braille_for_tests.txt"
     ARGV[1] = "test_output_reader/spaces.txt"
