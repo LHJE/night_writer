@@ -29,10 +29,21 @@ class NightReader
     writer.write(new_text)
   end
 
+  def translate_to_english(new_text)
+    english_message = []
+    dictionary.dictionary.each do |letter, braille|
+      if braille.split(" ").join("\n") == new_text
+        # binding.pry
+        english_message << letter
+      end
+    end
+    english_message.reduce
+  end
+  #
   # def translate_to_english(new_text)
   #   english_message = []
+  #   binding.pry
   #   new_text.each do |character|
-  #     binding.pry
   #     dictionary.dictionary.each do |letter, braille|
   #       if braille == character
   #         english_message << letter.split(" ")
@@ -48,12 +59,12 @@ class NightReader
     braille_by_row
   end
 
-  def find_braille_rows_assembled(braille_by_row)
-    braille_rows_assembled = []
-    braille_by_row.each do |character|
-      braille_rows_assembled << "#{character.join("")}"
+  def find_braille_rows_disassembled(untransposed_b_message_w_breaks)
+    braille_rows_disassembled = []
+    untransposed_b_message_w_breaks.each do |character|
+      braille_rows_disassembled << "#{character.join("")}"
     end
-    braille_rows_assembled
+    braille_rows_disassembled
   end
 
   def find_untransposed_b_message(braille_multiple_lines)
@@ -79,12 +90,14 @@ class NightReader
 
   def read_and_write_braille_to_english
     new_text = reader.read_first_arg.chomp
-
     braille_multiple_lines = find_braille_multiple_lines(new_text)
-
     untransposed_b_message_w_breaks = find_untransposed_b_message(braille_multiple_lines)
+
+
     binding.pry
     # CHECK FOR CAPITALS FIRST.
+
+    #this cannot be the next step
     braille_rows_disassembled = find_braille_rows_disassembled(untransposed_b_message_w_breaks)
     #English_by_row?
     braille_by_row = find_braille_by_row(braille_rows_disassembled)
