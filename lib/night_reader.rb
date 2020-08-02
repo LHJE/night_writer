@@ -30,11 +30,9 @@ class NightReader
     braille_multiple_lines.transpose.each do |braille_line|
       index_number = 3
       while braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + index_number] != nil
-        extra_lines << braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + index_number]
-        index_number += 3
+        extra_lines << braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + index_number] ; index_number += 3
       end
-      untransposed_b_message << (braille_line.reduce + extra_lines.join(""))
-      extra_lines = []
+      untransposed_b_message << (braille_line.reduce + extra_lines.join("")) ; extra_lines = []
     end
     untransposed_b_message[0..2]
   end
@@ -58,19 +56,23 @@ class NightReader
     english_message
   end
 
+  def find_english_message(braille_array, letter, braille)
+    english_message = []
+    if braille_array[0].length > 2
+      english_message << english_message_if_long_braille_string(braille_array, letter, braille)
+    elsif [braille_array[0][0..1], braille_array[1][0..1], braille_array[2][0..1]].join(" ")  == ".. .. .."
+      english_message << " " ; slice_two_from_each_string(braille_array)
+    elsif braille.split(" ").join("\n") == braille_array.join("\n")
+      english_message << letter ; slice_two_from_each_string(braille_array)
+    end
+    english_message
+  end
+
   def translate_to_english(braille_array)
     english_message = []
     until braille_array == ["", "", ""]
       dictionary.dictionary.each do |letter, braille|
-        if braille_array[0].length > 2
-          english_message << english_message_if_long_braille_string(braille_array, letter, braille)
-        elsif [braille_array[0][0..1], braille_array[1][0..1], braille_array[2][0..1]].join(" ")  == ".. .. .."
-          english_message << " "
-          slice_two_from_each_string(braille_array)
-        elsif braille.split(" ").join("\n") == braille_array.join("\n")
-          english_message << letter
-          slice_two_from_each_string(braille_array)
-        end
+        english_message << find_english_message(braille_array, letter, braille)
       end
     end
     english_message.join("")
