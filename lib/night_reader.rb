@@ -46,7 +46,6 @@ class NightReader
     braille_array
   end
 
-
   def translate_to_english(braille_array)
     english_message = []
     until braille_array == ["", "", ""]
@@ -61,8 +60,6 @@ class NightReader
           elsif braille == [braille_array[0][0..1], braille_array[1][0..1], braille_array[2][0..1]].join(" ")
             english_message << letter
             slice_two_from_each_string(braille_array)
-          else
-            next
           end
         elsif [braille_array[0][0..1], braille_array[1][0..1], braille_array[2][0..1]].join(" ")  == ".. .. .."
           english_message << " "
@@ -70,8 +67,6 @@ class NightReader
         elsif braille.split(" ").join("\n") == braille_array.join("\n")
           english_message << letter
           slice_two_from_each_string(braille_array)
-        else
-          next
         end
       end
     end
