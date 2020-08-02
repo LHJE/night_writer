@@ -39,6 +39,14 @@ class NightReader
     untransposed_b_message[0..2]
   end
 
+  def slice_two_from_each_string(braille_array)
+    braille_array[0] = braille_array[0].slice(2..-1)
+    braille_array[1] = braille_array[1].slice(2..-1)
+    braille_array[2] = braille_array[2].slice(2..-1)
+    braille_array
+  end
+
+
   def translate_to_english(braille_array)
     english_message = []
     until braille_array == ["", "", ""]
@@ -46,32 +54,22 @@ class NightReader
         if braille_array[0].length > 2
           if [braille_array[0][0..1], braille_array[1][0..1], braille_array[2][0..1]].join(" ")  == ".. .. .."
             english_message << " "
-            braille_array[0] = braille_array[0].slice(2..-1)
-            braille_array[1] = braille_array[1].slice(2..-1)
-            braille_array[2] = braille_array[2].slice(2..-1)
+            slice_two_from_each_string(braille_array)
           elsif braille == [braille_array[0][0..3], braille_array[1][0..3], braille_array[2][0..3]].join(" ")
             english_message << letter
-            braille_array[0] = braille_array[0].slice(4..-1)
-            braille_array[1] = braille_array[1].slice(4..-1)
-            braille_array[2] = braille_array[2].slice(4..-1)
+            2.times { slice_two_from_each_string(braille_array) }
           elsif braille == [braille_array[0][0..1], braille_array[1][0..1], braille_array[2][0..1]].join(" ")
             english_message << letter
-            braille_array[0] = braille_array[0].slice(2..-1)
-            braille_array[1] = braille_array[1].slice(2..-1)
-            braille_array[2] = braille_array[2].slice(2..-1)
+            slice_two_from_each_string(braille_array)
           else
             next
           end
         elsif [braille_array[0][0..1], braille_array[1][0..1], braille_array[2][0..1]].join(" ")  == ".. .. .."
           english_message << " "
-          braille_array[0] = braille_array[0].slice(2..-1)
-          braille_array[1] = braille_array[1].slice(2..-1)
-          braille_array[2] = braille_array[2].slice(2..-1)
+          slice_two_from_each_string(braille_array)
         elsif braille.split(" ").join("\n") == braille_array.join("\n")
           english_message << letter
-          braille_array[0] = braille_array[0].slice(2..-1)
-          braille_array[1] = braille_array[1].slice(2..-1)
-          braille_array[2] = braille_array[2].slice(2..-1)
+          slice_two_from_each_string(braille_array)
         else
           next
         end
