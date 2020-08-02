@@ -29,16 +29,17 @@ class NightReader
     writer.write(new_text)
   end
 
-  def translate_to_braille(new_text)
-    braille_message = []
+  def translate_to_english(new_text)
+    english_message = []
     new_text.each do |character|
+      binding.pry
       dictionary.dictionary.each do |letter, braille|
-        if letter == character
-          braille_message << braille.split(" ")
+        if braille == character
+          english_message << letter.split(" ")
         end
       end
     end
-    braille_message
+    english_message
   end
 
   def find_braille_rows_assembled(braille_by_row)
@@ -56,7 +57,7 @@ class NightReader
   end
 
   def read_and_write_braille_to_english
-    # new_text = reader.read_first_arg.chomp.split("")
+    # new_text = reader.read_first_arg.chomp
     # braille_message = translate_to_braille(new_text)
     # header, *rows = braille_message
     # braille_by_row = header.zip(*rows)
