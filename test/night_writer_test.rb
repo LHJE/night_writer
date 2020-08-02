@@ -50,7 +50,7 @@ class NightWriterTest < Minitest::Test
     night_writer = NightWriter.new
     ARGV[0] = "test_input_writer/message.txt"
     ARGV[1] = "test_output_writer/braille_for_tests.txt"
-    new_text = "Just for the test!"
+    new_text = night_writer.reader.read_first_arg.chomp
     night_writer.writer.write(new_text)
 
     assert_equal "Just for the test!", night_writer.reader.read_second_arg

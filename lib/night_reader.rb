@@ -15,18 +15,28 @@ class NightReader
 
   def output_statement
     braille, *message = ARGV
-
     p "Created '#{message.reduce}' containing #{reader.read_second_arg.chomp.length} characters"
   end
 
-  def read_and_write_english_to_english
-    new_text = reader.read_first_arg.chomp
-    writer.write(new_text)
+  def find_braille_multiple_lines(new_text)
+    find_braille_multiple_lines = []
+    find_braille_multiple_lines << new_text.split("\n")
+    find_braille_multiple_lines
   end
 
-  def read_and_write_braille_to_braille
-    new_text = reader.read_first_arg.chomp
-    writer.write(new_text)
+  def find_untransposed_b_message(braille_multiple_lines)
+    untransposed_b_message = []
+    extra_lines = []
+    braille_multiple_lines.transpose.each do |braille_line|
+        index_number = 3
+        while braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + index_number] != nil
+          extra_lines << braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + index_number]
+          index_number += 3
+        end
+        untransposed_b_message << (braille_line.reduce + extra_lines.join(""))
+        extra_lines = []
+    end
+    untransposed_b_message[0..2]
   end
 
   def translate_to_english(new_text)
@@ -68,27 +78,6 @@ class NightReader
       end
     end
     english_message.join("")
-  end
-
-  def find_untransposed_b_message(braille_multiple_lines)
-    untransposed_b_message = []
-    extra_lines = []
-    braille_multiple_lines.transpose.each do |braille_line|
-        index_number = 3
-        while braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + index_number] != nil
-          extra_lines << braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + index_number]
-          index_number += 3
-        end
-        untransposed_b_message << (braille_line.reduce + extra_lines.join(""))
-        extra_lines = []
-    end
-    untransposed_b_message[0..2]
-  end
-
-  def find_braille_multiple_lines(new_text)
-    find_braille_multiple_lines = []
-    find_braille_multiple_lines << new_text.split("\n")
-    find_braille_multiple_lines
   end
 
   def read_and_write_braille_to_english
