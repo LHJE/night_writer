@@ -56,25 +56,19 @@ class NightReader
     braille_rows_assembled
   end
 
-  def find_braille_rows_shortened(braille_rows_assembled)
-    braille_rows_shortened = braille_rows_assembled.map do |braille_row|
-      braille_row.scan(/.{1,80}/).join(" ").split(" ")
-    end
-    braille_rows_shortened
-  end
-
   def find_untransposed_b_message(braille_multiple_lines)
     untransposed_b_message = []
-    braille_multiple_lines.count
+    extra_lines = []
     braille_multiple_lines.transpose.each do |braille_line|
-      if braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + 3] != nil && braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + 6] != nil
-        untransposed_b_message << (braille_line.reduce + braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + 3] + braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + 6])
-      else
-        break
-      end
+        index_number = 3
+        while braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + index_number] != nil
+          extra_lines << braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + index_number]
+          index_number += 3
+        end
+        untransposed_b_message << (braille_line.reduce + extra_lines.join(""))
+        extra_lines = []
     end
-    binding.pry
-    untransposed_b_message
+    untransposed_b_message[0..2]
   end
 
   def find_braille_multiple_lines(new_text)
@@ -90,10 +84,8 @@ class NightReader
 
     untransposed_b_message_w_breaks = find_untransposed_b_message(braille_multiple_lines)
     binding.pry
-
-    braille_rows_lengthened = find_braille_rows_lengthened(untransposed_b_message_w_breaks)
-
-    braille_rows_disassembled = find_braille_rows_disassembled(braille_rows_lengthened)
+    # CHECK FOR CAPITALS FIRST.
+    braille_rows_disassembled = find_braille_rows_disassembled(untransposed_b_message_w_breaks)
     #English_by_row?
     braille_by_row = find_braille_by_row(braille_rows_disassembled)
 

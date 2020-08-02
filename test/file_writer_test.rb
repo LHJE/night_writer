@@ -12,7 +12,7 @@ class FileWriterTest < Minitest::Test
 
   def test_it_can_write
     writer = FileWriter.new
-    ARGV[1] = "braille.txt"
+    ARGV[1] = "test_output_writer/braille.txt"
     new_text = "Well hello back!"
 
     writer.write(new_text)
