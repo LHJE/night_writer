@@ -29,17 +29,23 @@ class NightReader
     writer.write(new_text)
   end
 
-  def translate_to_english(new_text)
-    english_message = []
-    new_text.each do |character|
-      binding.pry
-      dictionary.dictionary.each do |letter, braille|
-        if braille == character
-          english_message << letter.split(" ")
-        end
-      end
-    end
-    english_message
+  # def translate_to_english(new_text)
+  #   english_message = []
+  #   new_text.each do |character|
+  #     binding.pry
+  #     dictionary.dictionary.each do |letter, braille|
+  #       if braille == character
+  #         english_message << letter.split(" ")
+  #       end
+  #     end
+  #   end
+  #   english_message
+  # end
+
+  def find_braille_by_row(braille_message)
+    header, *rows = braille_message
+    braille_by_row = header.zip(*rows)
+    braille_by_row
   end
 
   def find_braille_rows_assembled(braille_by_row)
@@ -57,40 +63,42 @@ class NightReader
     braille_rows_shortened
   end
 
-  def find_transposed_b_message_w_breaks(braille_rows_shortened)
-    transposed_b_message_w_breaks = braille_rows_shortened.map do |braille_rows|
-      braille_rows.map do |braille_row|
-        braille_row.insert(-1, "\n")
+  def find_untransposed_b_message(braille_multiple_lines)
+    untransposed_b_message = []
+    braille_multiple_lines.count
+    braille_multiple_lines.transpose.each do |braille_line|
+      if braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + 3] != nil && braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + 6] != nil
+        untransposed_b_message << (braille_line.reduce + braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + 3] + braille_multiple_lines.flatten[braille_multiple_lines.flatten.find_index(braille_line.reduce) + 6])
+      else
+        break
       end
-    end.transpose.flatten
-    transposed_b_message_w_breaks
-  end
-
-  def find_braille_all_one_line(transposed_b_message_w_breaks)
-    braille_all_one_line = []
-    braille_all_one_line << transposed_b_message_w_breaks.join("").delete_suffix("\n")
-    braille_all_one_line
-  end
-
-  def ead_and_write_braille_to_english
-    new_text = reader.read_first_arg.chomp
+    end
     binding.pry
-    writer.write(braille_all_one_line.reduce)
-    #so, braille to Multiple Lines is what's needed here. find_braille_multiple_lines
-    #
-    braille_all_one_line = find_braille_all_one_line(transposed_b_message_w_breaks)
+    untransposed_b_message
+  end
 
-    transposed_b_message_w_breaks = find_transposed_b_message_w_breaks(braille_rows_shortened)
+  def find_braille_multiple_lines(new_text)
+    find_braille_multiple_lines = []
+    find_braille_multiple_lines << new_text.split("\n")
+    find_braille_multiple_lines
+  end
 
-    braille_rows_shortened = find_braille_rows_shortened(braille_rows_assembled)
+  def read_and_write_braille_to_english
+    new_text = reader.read_first_arg.chomp
 
-    braille_rows_assembled = find_braille_rows_assembled(braille_by_row)
+    braille_multiple_lines = find_braille_multiple_lines(new_text)
 
-    braille_by_row = header.zip(*rows)
-    header, *rows = braille_message
-    
-    braille_message = translate_to_braille(new_text)
+    untransposed_b_message_w_breaks = find_untransposed_b_message(braille_multiple_lines)
+    binding.pry
 
+    braille_rows_lengthened = find_braille_rows_lengthened(untransposed_b_message_w_breaks)
+
+    braille_rows_disassembled = find_braille_rows_disassembled(braille_rows_lengthened)
+    #English_by_row?
+    braille_by_row = find_braille_by_row(braille_rows_disassembled)
+
+    english_message = translate_to_english(braille_by_row)
+    writer.write(english_message)
   end
 
 end

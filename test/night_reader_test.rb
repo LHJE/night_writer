@@ -88,14 +88,14 @@ class NightReaderTest < Minitest::Test
     assert_equal "0.\n..\n..", night_reader.reader.read_second_arg
   end
 
-  def test_translate_to_braille
-    night_reader = NightReader.new
-    ARGV[0] = "test_input_reader/braille_a_for_tests.txt"
-    ARGV[1] = "test_output_reader/message_a_for_tests.txt"
-    new_text = night_reader.reader.read_first_arg.chomp
-
-    assert_equal "a", night_reader.translate_to_english(new_text)
-  end
+  # def test_translate_to_braille
+  #   night_reader = NightReader.new
+  #   ARGV[0] = "test_input_reader/braille_a_for_tests.txt"
+  #   ARGV[1] = "test_output_reader/message_a_for_tests.txt"
+  #   new_text = night_reader.reader.read_first_arg.chomp
+  #
+  #   assert_equal "a", night_reader.translate_to_english(new_text)
+  # end
   #
   # def test_find_braille_rows_assembled
   #   night_reader = NightReader.new
@@ -154,9 +154,9 @@ class NightReaderTest < Minitest::Test
   #   ARGV[0] = "test_input_reader/braille_a_for_tests.txt"
   #   ARGV[1] = "test_output_reader/message_a_for_tests.txt"
   #
-  #   night_reader.read_and_write_english_to_braille
+  #   night_reader.read_and_write_braille_to_english
   #
-  #   assert_equal "0.\n..\n..", night_reader.reader.read_second_arg
+  #   assert_equal "a", night_reader.reader.read_second_arg
   # end
   #
   # def test_write_ab_braille_a_into_a_new_file
@@ -164,7 +164,7 @@ class NightReaderTest < Minitest::Test
   #   ARGV[0] = "test_input_reader/braille_abc_for_tests.txt"
   #   ARGV[1] = "test_output_reader/message_abc_for_tests.txt"
   #
-  #   night_reader.read_and_write_english_to_braille
+  #   night_reader.read_and_write_braille_to_english
   #
   #   assert_equal "0.0.00\n..0...\n......", night_reader.reader.read_second_arg
   # end
@@ -174,7 +174,7 @@ class NightReaderTest < Minitest::Test
   #   ARGV[0] = "test_input_reader/actual_braille_for_tests.txt"
   #   ARGV[1] = "test_output_reader/spaces.txt"
   #
-  #   night_reader.read_and_write_english_to_braille
+  #   night_reader.read_and_write_braille_to_english
   #
   #   assert_equal "......\n......\n......", night_reader.reader.read_second_arg
   # end
@@ -184,7 +184,7 @@ class NightReaderTest < Minitest::Test
   #   ARGV[0] = "test_input_reader/hello_world_braille_test.txt"
   #   ARGV[1] = "test_output_reader/message.txt"
   #
-  #   night_reader.read_and_write_english_to_braille
+  #   night_reader.read_and_write_braille_to_english
   #
   #   assert_equal "0.0.0.0.0....00.0.0.00\n00.00.0..0..00.0000..0\n....0.0.0....00.0.0...", night_reader.reader.read_second_arg
   # end
@@ -194,7 +194,7 @@ class NightReaderTest < Minitest::Test
   #   ARGV[0] = "test_input_reader/capitals_braille_for_tests.txt"
   #   ARGV[1] = "test_output_reader/message_for_tests.txt"
   #
-  #   night_reader.read_and_write_english_to_braille
+  #   night_reader.read_and_write_braille_to_english
   #
   #   assert_equal "...00..0.0..000.0....00.0....00..0.0..\n..00..0.00..0..000..0000.0..00.00.0000\n.0..000.0.....0.0...0.......0...0.0.0.", night_reader.reader.read_second_arg
   # end
@@ -204,19 +204,19 @@ class NightReaderTest < Minitest::Test
   #   ARGV[0] = "test_input_reader/long_braille_for_tests.txt"
   #   ARGV[1] = "test_output_reader/long_message.txt"
   #
-  #   night_reader.read_and_write_english_to_braille
+  #   night_reader.read_and_write_braille_to_english
   #
   #   assert_equal 1544, night_reader.reader.read_second_arg.length
   # end
   #
-  # def test_write_all_characters
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/all_characters_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/all_characters.txt"
-  #
-  #   night_reader.read_and_write_english_to_braille
-  #
-  #   assert_equal 518, night_reader.reader.read_second_arg.length
-  # end
+  def test_write_all_characters
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/all_characters_for_tests.txt"
+    ARGV[1] = "test_output_reader/all_characters.txt"
+
+    night_reader.read_and_write_braille_to_english
+
+    assert_equal 518, night_reader.reader.read_second_arg.length
+  end
 
 end
