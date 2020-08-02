@@ -206,7 +206,7 @@ class NightReaderTest < Minitest::Test
   end
 
   def test_write_hello_world
-    # skip
+    skip
     night_reader = NightReader.new
     ARGV[0] = "test_input_reader/hello_world_braille_test.txt"
     ARGV[1] = "test_output_reader/message.txt"
@@ -236,14 +236,24 @@ class NightReaderTest < Minitest::Test
   #   assert_equal 1544, night_reader.reader.read_second_arg.length
   # end
   #
-  # def test_write_all_characters
-  #   night_reader = NightReader.new
-  #   ARGV[0] = "test_input_reader/all_characters_for_tests.txt"
-  #   ARGV[1] = "test_output_reader/all_characters.txt"
-  #
-  #   night_reader.read_and_write_braille_to_english
-  #
-  #   assert_equal 518, night_reader.reader.read_second_arg.length
-  # end
+  def test_write_all_characters
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/all_characters_for_tests.txt"
+    ARGV[1] = "test_output_reader/all_characters.txt"
+
+    night_reader.read_and_write_braille_to_english
+
+    assert_equal  " !',-.?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", night_reader.reader.read_second_arg
+  end
+
+  def test_write_all_characters
+    night_reader = NightReader.new
+    ARGV[0] = "test_input_reader/all_characters_and_numbers_for_tests.txt"
+    ARGV[1] = "test_output_reader/all_characters_and_numbers.txt"
+
+    night_reader.read_and_write_braille_to_english
+
+    assert_equal  " !',-.?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890", night_reader.reader.read_second_arg
+  end
 
 end
