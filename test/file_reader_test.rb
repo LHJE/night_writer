@@ -19,7 +19,6 @@ class FileReaderTest < Minitest::Test
   end
 
   def test_it_can_read_second_arg
-    # skip
     reader = FileReader.new
     ARGV[0] = "test_input_writer/message.txt"
     ARGV[1] = "test_input_writer/message.txt"
