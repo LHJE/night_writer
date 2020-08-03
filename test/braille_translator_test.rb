@@ -209,9 +209,9 @@ class BrailleTranslatorTest < Minitest::Test
 
   def test_it_can_print_ending_statement_correctly
     braille_translator = BrailleTranslator.new
-    ARGV[0] = "test_input_reader/braille.txt"
-    ARGV[1] = "test_output_reader/message.txt"
+    ARGV[0] = "test_input_reader/another_braille_for_tests.txt"
+    ARGV[1] = "test_input_reader/another_braille_for_tests.txt"
 
-    assert_equal "Created 'test_output_reader/message.txt' containing 11 characters", braille_translator.output_statement
+    assert_equal "Created 'test_input_reader/another_braille_for_tests.txt' containing 15 characters", braille_translator.output_statement
   end
 end

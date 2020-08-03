@@ -33,9 +33,9 @@ class EnglishTranslatorTest < Minitest::Test
   def test_it_can_print_ending_statement_correctly
     english_translator = EnglishTranslator.new
     ARGV[0] = "test_input_writer/message.txt"
-    ARGV[1] = "test_output_writer/braille.txt"
+    ARGV[1] = "test_input_writer/message.txt"
 
-    assert_equal "Created 'test_output_writer/braille.txt' containing 16 characters", english_translator.output_statement
+    assert_equal "Created 'test_input_writer/message.txt' containing 11 characters", english_translator.output_statement
   end
 
   def test_it_can_write_with_writer
