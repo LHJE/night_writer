@@ -1,7 +1,6 @@
 require './lib/file_reader'
 require './lib/file_writer'
 require './lib/dictionary'
-require 'pry'
 
 class BrailleTranslator
 
@@ -37,11 +36,16 @@ class BrailleTranslator
     untransposed_b_message[0..2]
   end
 
-  def slice_two_from_each_string(braille_array)
-    braille_array[0] = braille_array[0].slice(2..-1)
-    braille_array[1] = braille_array[1].slice(2..-1)
-    braille_array[2] = braille_array[2].slice(2..-1)
-    braille_array
+  def find_english_message(braille_array, letter, braille)
+    english_message = []
+    if braille_array[0].length > 2
+      english_message << english_message_if_long_braille_string(braille_array, letter, braille)
+    elsif [braille_array[0][0..1], braille_array[1][0..1], braille_array[2][0..1]].join(" ")  == ".. .. .."
+      english_message << " " ; slice_two_from_each_string(braille_array)
+    elsif braille.split(" ").join("\n") == braille_array.join("\n")
+      english_message << letter ; slice_two_from_each_string(braille_array)
+    end
+    english_message
   end
 
   def english_message_if_long_braille_string(braille_array, letter, braille)
@@ -56,16 +60,11 @@ class BrailleTranslator
     english_message
   end
 
-  def find_english_message(braille_array, letter, braille)
-    english_message = []
-    if braille_array[0].length > 2
-      english_message << english_message_if_long_braille_string(braille_array, letter, braille)
-    elsif [braille_array[0][0..1], braille_array[1][0..1], braille_array[2][0..1]].join(" ")  == ".. .. .."
-      english_message << " " ; slice_two_from_each_string(braille_array)
-    elsif braille.split(" ").join("\n") == braille_array.join("\n")
-      english_message << letter ; slice_two_from_each_string(braille_array)
-    end
-    english_message
+  def slice_two_from_each_string(braille_array)
+    braille_array[0] = braille_array[0].slice(2..-1)
+    braille_array[1] = braille_array[1].slice(2..-1)
+    braille_array[2] = braille_array[2].slice(2..-1)
+    braille_array
   end
 
   def translate_to_english(braille_array)

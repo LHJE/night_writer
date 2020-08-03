@@ -1,7 +1,6 @@
 require './lib/file_reader'
 require './lib/file_writer'
 require './lib/dictionary'
-require 'pry'
 
 class EnglishTranslator
 
@@ -15,13 +14,7 @@ class EnglishTranslator
 
   def output_statement
     message, *braille = ARGV
-
     p "Created '#{braille.reduce}' containing #{reader.read_second_arg.chomp.length} characters"
-  end
-
-  def read_and_write_english_to_english
-    new_text = reader.read_first_arg.chomp
-    writer.write(new_text)
   end
 
   def translate_to_braille(new_text)
@@ -82,10 +75,4 @@ class EnglishTranslator
     braille_all_one_line = find_braille_all_one_line(transposed_b_message_w_breaks)
     writer.write(braille_all_one_line.reduce)
   end
-
 end
-
-#turn the below on to use program.  Test won't work if they're on, however.
-# night_writer = NightWriter.new
-# night_writer.read_and_write_english_to_braille
-# night_writer.output_statement

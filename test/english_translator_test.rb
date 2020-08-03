@@ -48,24 +48,6 @@ class EnglishTranslatorTest < Minitest::Test
     assert_equal "hello world", english_translator.reader.read_second_arg
   end
 
-  def test_read_from_one_write_to_another
-    english_translator = EnglishTranslator.new
-    ARGV[0] = "test_input_writer/message.txt"
-    ARGV[1] = "test_output_writer/braille.txt"
-    english_translator.read_and_write_english_to_english
-
-    assert_equal "hello world", english_translator.reader.read_second_arg
-  end
-
-  def test_read_from_one_write_to_another_different
-    english_translator = EnglishTranslator.new
-    ARGV[0] = "test_input_writer/message_for_tests.txt"
-    ARGV[1] = "test_output_writer/braille_for_tests.txt"
-    english_translator.read_and_write_english_to_english
-
-    assert_equal "Just for the test!", english_translator.reader.read_second_arg
-  end
-
   def test_translate_to_braille
     english_translator = EnglishTranslator.new
     ARGV[0] = "test_input_writer/message_a_for_tests.txt"
