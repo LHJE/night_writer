@@ -30,14 +30,6 @@ class BrailleTranslatorTest < Minitest::Test
     assert_equal "hello world", braille_translator.reader.read_first_arg.chomp
   end
 
-  def test_it_can_print_ending_statement_correctly
-    braille_translator = BrailleTranslator.new
-    ARGV[0] = "test_input_reader/braille.txt"
-    ARGV[1] = "test_output_reader/newest_message.txt"
-
-    assert_equal "Created 'test_output_reader/newest_message.txt' containing 17 characters", braille_translator.output_statement
-  end
-
   def test_it_can_write_with_writer
     braille_translator = BrailleTranslator.new
     ARGV[0] = "test_input_reader/braille_for_tests.txt"
@@ -213,5 +205,13 @@ class BrailleTranslatorTest < Minitest::Test
     braille_translator.read_and_write_braille_to_english
 
     assert_equal  " !',-.?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890", braille_translator.reader.read_second_arg
+  end
+
+  def test_it_can_print_ending_statement_correctly
+    braille_translator = BrailleTranslator.new
+    ARGV[0] = "test_input_reader/braille.txt"
+    ARGV[1] = "test_output_reader/message.txt"
+
+    assert_equal "Created 'test_output_reader/message.txt' containing 11 characters", braille_translator.output_statement
   end
 end
