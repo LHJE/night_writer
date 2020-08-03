@@ -4,5 +4,4 @@ class Dictionary
   def initialize(filepath)
     @dictionary = Hash[File.read(filepath.chomp).scan(/(.+?), (.+)/)]
   end
-
 end
