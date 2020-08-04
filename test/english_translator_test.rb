@@ -1,5 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
+require './test/test_helper'
 require './lib/file_reader'
 require './lib/file_writer'
 require './lib/english_translator'
@@ -184,36 +183,8 @@ class EnglishTranslatorTest < Minitest::Test
 
   def test_write_all_characters_and_numbers
     english_translator = EnglishTranslator.new
-    ARGV[0] = "test_input_writer/all_characters_and_numbers.txt"
-    ARGV[1] = "test_output_writer/all_characters_and_numbers_for_tests.txt"
-    english_translator.read_and_write_english_to_braille
-
-    assert_equal 638, english_translator.reader.read_second_arg.length
-  end
-
-  def test_write_all_characters_and_numbers
-    english_translator = EnglishTranslator.new
     ARGV[0] = "test_input_writer/message_capital_abc_for_tests.txt"
     ARGV[1] = "test_output_writer/braille_capital_abc_for_tests.txt"
-    english_translator.read_and_write_english_to_braille
-
-    assert_equal 38, english_translator.reader.read_second_arg.length
-  end
-
-  def test_write_all_characters_and_numbers
-    english_translator = EnglishTranslator.new
-    ARGV[0] = "test_input_writer/message_capital_abc_for_tests.txt"
-    ARGV[1] = "test_output_writer/braille_capital_abc_for_tests.txt"
-    english_translator.read_and_write_english_to_braille
-
-    assert_equal 38, english_translator.reader.read_second_arg.length
-  end
-
-  def test_write_all_characters_and_numbers
-    english_translator = EnglishTranslator.new
-    ARGV[0] = "test_input_writer/message_capital_cba_for_tests.txt"
-    ARGV[1] = "test_output_writer/braille_capital_cba_for_tests.txt"
-
     english_translator.read_and_write_english_to_braille
 
     assert_equal 38, english_translator.reader.read_second_arg.length
