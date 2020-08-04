@@ -1,5 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
+require './test/test_helper'
 require './lib/file_reader'
 require './lib/file_writer'
 require './lib/braille_translator'
